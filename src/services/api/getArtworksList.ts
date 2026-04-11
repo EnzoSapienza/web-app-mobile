@@ -1,6 +1,6 @@
 import BASE_URL from '.';
-import type Artwork from '../../interfaces/Artwork';
-import type { ListResponse } from '../../interfaces/Responses';
+import type Artwork from '../../interfaces/Responses/Artwork';
+import type { ListResponse } from '../../interfaces/Responses/ListResponse';
 
 export default async function GetArtworksList(
   limit: number,
