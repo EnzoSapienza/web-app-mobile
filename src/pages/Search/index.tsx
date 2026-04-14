@@ -22,7 +22,13 @@ export default function Search() {
     if (resetPage) setPage(1);
 
     setLoading(true);
-    const results = await GetArtworksSearch({ q: query, type, origin, style, page: currentPage });
+    const results = await GetArtworksSearch({
+      q: query,
+      type,
+      origin,
+      style,
+      page: currentPage,
+    });
     setArtworks(results);
     setLoading(false);
     // Scrolleo suave hacia arriba si esta navegando páginas
@@ -40,7 +46,13 @@ export default function Search() {
         <p className={styles.pageSubtitle}>Explore world-class masterpieces.</p>
       </header>
 
-      <form onSubmit={(e) => { e.preventDefault(); handleSearch(true); }} className={styles.searchForm}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch(true);
+        }}
+        className={styles.searchForm}
+      >
         <div className={styles.searchBarWrapper}>
           <span className={styles.searchIcon}>⚲</span>
           <input
@@ -53,17 +65,41 @@ export default function Search() {
         </div>
 
         <div className={styles.filtersRow}>
-          <select value={type} onChange={(e) => setType(e.target.value)} className={styles.select}>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className={styles.select}
+          >
             <option value="">Category ▾</option>
-            {types.map(t => <option key={t} value={t}>{t}</option>)}
+            {types.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
           </select>
-          <select value={origin} onChange={(e) => setOrigin(e.target.value)} className={styles.select}>
+          <select
+            value={origin}
+            onChange={(e) => setOrigin(e.target.value)}
+            className={styles.select}
+          >
             <option value="">Origin ▾</option>
-            {origins.map(o => <option key={o} value={o}>{o}</option>)}
+            {origins.map((o) => (
+              <option key={o} value={o}>
+                {o}
+              </option>
+            ))}
           </select>
-          <select value={style} onChange={(e) => setStyle(e.target.value)} className={styles.select}>
+          <select
+            value={style}
+            onChange={(e) => setStyle(e.target.value)}
+            className={styles.select}
+          >
             <option value="">Style ▾</option>
-            {stylesList.map(s => <option key={s} value={s}>{s}</option>)}
+            {stylesList.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -75,23 +111,27 @@ export default function Search() {
       <div className={styles.grid}>
         {loading ? (
           <p className={styles.status}>Exploring archives...</p>
+        ) : artworks.length > 0 ? (
+          artworks.map((art) => <ArtCard key={art.id} art={art} />)
         ) : (
-          artworks.length > 0 ? (
-            artworks.map((art) => <ArtCard key={art.id} art={art} />)
-          ) : (
-            <p className={styles.status}>No results found.</p>
-          )
+          <p className={styles.status}>No results found.</p>
         )}
       </div>
 
       {/* PAGINACIÓN(10 elementos) */}
       {!loading && artworks.length > 0 && (
         <div className={styles.pagination}>
-          <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+          >
             ← Previous
           </button>
           <span className={styles.pageNumber}>Page {page}</span>
-          <button onClick={() => setPage(p => p + 1)} disabled={artworks.length < 10}>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={artworks.length < 10}
+          >
             Next →
           </button>
         </div>

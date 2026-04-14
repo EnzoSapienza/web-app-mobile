@@ -15,5 +15,6 @@ export default interface Artwork {
   description: string;
   short_description: string;
   image_id: string;
+  imageUrl: string;
   alt_image_ids: string[];
 }

@@ -30,34 +30,6 @@ export default function useLocalStorage<T>(
 }
 
 /*
-function getLocalValue<T>(key: string, initialValue: T): T {
-  try {
-    const item = localStorage.getItem(key);
-    return item ? (JSON.parse(item) as T) : initialValue;
-  } catch (error) {
-    console.error('Error leyendo localStorage', error);
-    return initialValue;
-  }
-}
-
-function setLocalValue<T>(key: string, value: T) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.error('Error leyendo localStorage', error);
-  }
-}
-
-const Local = {
-  set: setLocalValue,
-  get: getLocalValue,
-};
-
-export default Local;
-
-*/
-
-/*
 import { useLocalStorage } from './useLocalStorage';
 import { HistoryItem } from './types';
 

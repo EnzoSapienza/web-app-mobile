@@ -3,24 +3,24 @@ import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 
 interface Props {
-    art: Artwork;
+  art: Artwork;
 }
 
 export default function ArtCard({ art }: Props) {
-    const displayTitle = art.title || "Untitled Masterpiece";
-    const displayArtist = art.artist_display || "Unknown Artist";
+  const displayTitle = art.title || 'Untitled Masterpiece';
+  const displayArtist = art.artist_display || 'Unknown Artist';
 
-    return (
+  return (
     <Link to={`/details/${art.id}`} className={styles.cardLink}>
-        <article className={styles.card}>
-            <figure className={styles.figure}>
-                <img src={(art as any).imageUrl} alt={displayTitle} className={styles.image} />
-            </figure>
-            <div className={styles.info}>
-                <h3 className={styles.artTitle}>{displayTitle}</h3>
-                <p className={styles.artistName}>{displayArtist}</p>
-            </div>
-        </article>
+      <article className={styles.card}>
+        <figure className={styles.figure}>
+          <img src={art.imageUrl} alt={displayTitle} className={styles.image} />
+        </figure>
+        <div className={styles.info}>
+          <h3 className={styles.artTitle}>{displayTitle}</h3>
+          <p className={styles.artistName}>{displayArtist}</p>
+        </div>
+      </article>
     </Link>
-    );
+  );
 }
