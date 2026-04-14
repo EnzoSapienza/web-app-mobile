@@ -1,3 +1,52 @@
 /*
   Estilos globales
 */
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Noto+Serif:wght@400;700&display=swap');
+
+:root {
+  --surface: #f8f9fa;
+  --surface-lowest: #ffffff;
+  --surface-low: #f3f4f5;
+  --primary: #040c21;
+  --secondary: #735b1e;
+  --on-surface-variant: #45464d;
+  --font-serif: 'Noto Serif', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--surface);
+  color: var(--primary);
+  font-family: var(--font-serif);
+  line-height: 1.6;
+}
+
+/* Botón Champagne */
+.btn-gold {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--secondary), #e3c37b);
+  color: white;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1.5rem;
+  transition: opacity 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  opacity: 0.9;
+}

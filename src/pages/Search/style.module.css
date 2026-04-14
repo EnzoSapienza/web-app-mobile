@@ -1,3 +1,128 @@
-\*
-Estilo de página
-*/
+.searchPage {
+    width: 100%;
+    padding: 100px 1rem 3rem 1rem;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #eeeeee 0%, var(--surface) 300px);
+}
+
+.searchHeader {
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pageTitle {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+
+.searchForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+.searchBarWrapper {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.searchIcon {
+    font-size: 1.6rem;
+    margin-right: 0.8rem;
+    transform: rotate(-45deg);
+    opacity: 0.4;
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+.filtersRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+@media (min-width: 768px) {
+    .filtersRow { flex-direction: row; }
+}
+
+.select {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0.5rem 0;
+}
+.select option {
+    text-transform: none;
+    font-weight: normal;
+    font-size: 1rem;
+    color: black;
+    background-color: white;
+}
+
+/* GRILLA */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+@media (min-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* PAGINACIÓN*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 4rem; 
+    margin-bottom: 3rem;
+}
+
+.pageNumber {
+    font-family: var(--font-sans);
+    font-weight: 700;
+}
+
+.pagination button {
+    background: none;
+    border: 1px solid var(--secondary);
+    color: var(--secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.pagination button:disabled { opacity: 0.3; }
+
+.status {
+    text-align: center;
+    padding: 4rem;
+    color: var(--secondary);
+}

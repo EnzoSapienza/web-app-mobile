@@ -6,6 +6,7 @@ import Layout from './layout/MainLayout';
 import Wishlist from './pages/Wishlist';
 import History from './pages/History';
 import Details from './pages/Details';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/details" element={<Details />} />
+          <Route path="/details/:id" element={<Details />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/history" element={<History />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
       </Routes>
     </BrowserRouter>

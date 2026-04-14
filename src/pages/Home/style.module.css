@@ -1,3 +1,62 @@
-\*
-Estilo de página
-*/
+.homeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 100px 1rem 3rem 1rem;
+}
+
+.hero {
+    max-width: 500px;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.subtitle {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.7rem;
+    color: var(--secondary);
+}
+
+.title {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin: 1rem 0;
+    line-height: 1.1;
+}
+
+/* El contenedor de las tarjetas */
+.grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+}
+
+.filtersRow {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.select {
+    flex: 1;
+    background: var(--surface-low);
+    border: 1px solid var(--secondary);
+    color: var(--primary);
+    padding: 0.8rem;
+    font-family: var(--font-sans);
+    border-radius: 0.5rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.loading {
+    padding-top: 120px;
+    text-align: center;
+    font-family: var(--font-sans);
+    color: var(--secondary);
+}

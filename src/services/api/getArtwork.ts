@@ -11,3 +11,4 @@ export default async function GetArtwork(artwork_id: number): Promise<Artwork> {
   const content = await response.json();
   return content.data;
 }
+

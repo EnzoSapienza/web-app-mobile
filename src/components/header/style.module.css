@@ -1,3 +1,33 @@
-\*
-Estilo del componente
-*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--surface-lowest);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.logo {
+    color: var(--primary);
+    text-decoration: none;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.contactBtn {
+    background: linear-gradient(135deg, var(--secondary), #e3c37b);
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+}

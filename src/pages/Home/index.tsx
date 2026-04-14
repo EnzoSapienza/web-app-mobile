@@ -1,7 +1,43 @@
+import { useEffect, useState } from 'react';
+import GetArtworksList from '../../services/api/getArtworksList';
+import type Artwork from '../../interfaces/Responses/Artwork';
+import styles from './style.module.css';
+import { Link } from 'react-router-dom';
+import ArtCard from '../../components/artCard';
+
 export default function Home() {
+  const [artworks, setArtworks] = useState<Artwork[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadInitialArt = async () => {
+      try {
+        // Trae 4 obras para la bienvenida
+        const data = await GetArtworksList(4, 1);
+        setArtworks(data);
+      } catch (error) {
+        console.error("Error cargando el museo:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadInitialArt();
+  }, []);
+
+  if (loading) return <div className={styles.loading}>Loading Collection...</div>;
+
   return (
-    <>
-      <h1>Home</h1>
-    </>
+    <section className={styles.homeContainer}>
+      <header className={styles.hero}>
+        <h1 className={styles.title}>THE LUMINAL</h1>
+        <Link to="/search" className="btn-gold">Explore Collection</Link>
+      </header>
+
+      <div className={styles.grid}>
+        {artworks.map((art) => (
+          <ArtCard key={art.id} art={art} />
+        ))}
+      </div>
+    </section>
   );
 }
