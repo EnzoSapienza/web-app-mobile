@@ -1,3 +1,3 @@
-export default interface WhishlistItem {
+export default interface WishlistItem {
   id: number;
 }
