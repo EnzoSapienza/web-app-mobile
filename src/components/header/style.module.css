@@ -31,3 +31,7 @@
     font-size: 0.8rem;
     font-weight: 500;
 }
+.logo img {
+  height: 40px;
+  width: auto;
+}
