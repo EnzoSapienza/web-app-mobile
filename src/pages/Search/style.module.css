@@ -1,6 +1,6 @@
 .searchPage {
     width: 100%;
-    padding: 100px 1rem 3rem 1rem;
+    padding: 40px 1rem 3rem 1rem;
     min-height: 100vh;
     background: linear-gradient(to bottom, #eeeeee 0%, var(--surface) 300px);
 }
@@ -32,7 +32,7 @@
     background: white;
     padding: 0.8rem 1.5rem;
     border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .searchIcon {
@@ -56,7 +56,9 @@
 }
 
 @media (min-width: 768px) {
-    .filtersRow { flex-direction: row; }
+    .filtersRow {
+        flex-direction: row;
+    }
 }
 
 .select {
@@ -73,6 +75,7 @@
     outline: none;
     padding: 0.5rem 0;
 }
+
 .select option {
     text-transform: none;
     font-weight: normal;
@@ -90,8 +93,17 @@
     margin: 0 auto;
 }
 
-@media (min-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
 /* PAGINACIÓN*/
 .pagination {
@@ -99,7 +111,7 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    margin-top: 4rem; 
+    margin-top: 4rem;
     margin-bottom: 3rem;
 }
 
@@ -119,7 +131,9 @@
     cursor: pointer;
 }
 
-.pagination button:disabled { opacity: 0.3; }
+.pagination button:disabled {
+    opacity: 0.3;
+}
 
 .status {
     text-align: center;
