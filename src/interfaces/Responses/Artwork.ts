@@ -17,4 +17,13 @@ export default interface Artwork {
   image_id: string;
   imageUrl: string;
   alt_image_ids: string[];
+  dimension_details: [
+    {
+      depth: number;
+      width: number;
+      height: number;
+      diameter: number;
+      clarification: number;
+    },
+  ];
 }
