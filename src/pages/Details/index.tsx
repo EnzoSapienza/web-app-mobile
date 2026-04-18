@@ -3,6 +3,9 @@ import type Artwork from '../../interfaces/Responses/Artwork';
 import GetArtwork from '../../services/api/getArtwork';
 import { useEffect, useState } from 'react';
 import styles from './style.module.css';
+import ArtworkImage from '../../components/details/image';
+import ArtworkDescription from '../../components/details/description';
+import ArtworkData from '../../components/details/data/indext';
 
 export default function Details() {
   const { id } = useParams();
@@ -17,24 +20,15 @@ export default function Details() {
     fetchArtwork();
   }, [id]);
 
-  // Para la miniatura hasta que carga la imagen
-  const [loaded, setLoaded] = useState(false);
-
   return (
-    <>
-      <h1>{artwork?.title}</h1>
-      <div
-        className={`${styles.image_container} ${loaded ? styles.image_loaded : ''}`}
-        style={{ backgroundImage: `url(${artwork?.thumbnail?.lqip})` }}
-      >
-        <img
-          className={styles.image}
-          src={artwork?.imageUrl}
-          alt={artwork?.title}
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
-        />
-      </div>
-    </>
+    <section className={styles.detailsPage}>
+      <h1 className={styles.artworkTitle}>{artwork?.title}</h1>
+
+      <ArtworkImage artwork={artwork} />
+
+      <ArtworkDescription artwork={artwork} />
+
+      <ArtworkData artwork={artwork} />
+    </section>
   );
 }

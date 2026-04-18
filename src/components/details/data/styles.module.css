@@ -1,0 +1,40 @@
+@import url('/src/index.css');
+
+.artworkDetails {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.artworkDetails * {
+    font-family: var(--font-sans);
+}
+
+.artworkDetailsRow {
+    display: grid;
+    grid-template-areas: "name content";
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2rem;
+}
+
+.artworkDetailsCol {
+    padding: 0.5rem;
+}
+
+.artworkDetailsCol:first-child {
+    grid-area: name;
+    text-align: left;
+}
+
+.artworkDetailsCol:last-child {
+    grid-area: content;
+    text-align: right;
+}
+
+.artworkDetailsRow:nth-child(odd) {
+    background-color: var(--surface);
+}
+
+
+.artworkDetailsRow:nth-child(even) {
+    background-color: var(--surface-low);
+}

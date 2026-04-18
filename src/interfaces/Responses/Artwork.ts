@@ -8,8 +8,8 @@ export default interface Artwork {
   alt_titles: string[];
   thumbnail: Thumbnail;
   main_reference_number: string;
-  date_start: number;
-  date_end: number;
+  date_qualifier_title: string;
+  date_display: string;
   artist_display: string;
   place_of_origin: string;
   description: string;
@@ -26,4 +26,8 @@ export default interface Artwork {
       clarification: number;
     },
   ];
+  credit_line: string;
+  publication_history: string;
+  provenance_text: string;
+  exhibition_history: string;
 }
