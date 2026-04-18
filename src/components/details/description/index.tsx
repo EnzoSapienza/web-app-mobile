@@ -3,7 +3,6 @@ import styles from './styles.module.css';
 import DOMPurify from 'dompurify';
 
 export default function ArtworkDescription({ artwork }: Props) {
-  console.log(artwork);
   if (artwork?.description || artwork?.short_description) {
     const rawHtml = artwork?.description || artwork?.short_description || '';
 

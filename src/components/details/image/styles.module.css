@@ -23,3 +23,28 @@
     opacity: 1;
     filter: none;
 }
+
+.imageContainer.fullImage {
+    position: fixed;
+    top: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: none !important;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: "center";
+    align-items: "center";
+    z-index: 2000;
+    border-radius: 0;
+}
+
+.imageContainer.fullImage .image {
+    max-width: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.noScroll {
+    overflow: hidden;
+}
