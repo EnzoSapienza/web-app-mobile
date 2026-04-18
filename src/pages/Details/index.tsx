@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import styles from './style.module.css';
 import ArtworkImage from '../../components/details/image';
 import ArtworkDescription from '../../components/details/description';
+import ArtworkGenericDescription from '../../components/details/description/generic.tsx';
 import ArtworkData from '../../components/details/data/indext';
 
 export default function Details() {
@@ -29,6 +30,21 @@ export default function Details() {
       <ArtworkDescription artwork={artwork} />
 
       <ArtworkData artwork={artwork} />
+
+      <ArtworkGenericDescription
+        title={'Historial de publicación'}
+        text={artwork?.publication_history}
+      />
+
+      <ArtworkGenericDescription
+        title={'Historial de Exhibición'}
+        text={artwork?.exhibition_history}
+      />
+
+      <ArtworkGenericDescription
+        title={'Historial de adquisiciones'}
+        text={artwork?.provenance_text}
+      />
     </section>
   );
 }

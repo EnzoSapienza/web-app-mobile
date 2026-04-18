@@ -23,7 +23,7 @@ export default function ArtworkData({ artwork }: Props) {
       <ArtworkDetailsRow fieldName="Título" fieldContent={artwork?.title} />
       <ArtworkDetailsRow
         fieldName="Descripción"
-        fieldContent={artwork?.short_description || artwork?.description}
+        fieldContent={artwork?.short_description}
       />
       <ArtworkDetailsRow
         fieldName="Artista"
@@ -48,18 +48,6 @@ export default function ArtworkData({ artwork }: Props) {
       <ArtworkDetailsRow
         fieldName="Créditos de adquisición"
         fieldContent={artwork?.credit_line}
-      />
-      <ArtworkDetailsRow
-        fieldName="Historial de publicación"
-        fieldContent={artwork?.publication_history}
-      />
-      <ArtworkDetailsRow
-        fieldName="Historial de Exhibición"
-        fieldContent={artwork?.exhibition_history}
-      />
-      <ArtworkDetailsRow
-        fieldName="Adquisición 2"
-        fieldContent={artwork?.provenance_text}
       />
     </section>
   );
