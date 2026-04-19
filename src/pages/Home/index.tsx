@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import GetArtworksList from '../../services/api/getArtworksList';
+import GetArtworksSearch from '../../services/api/getArtworksSearch';
 import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 import { Link } from 'react-router-dom';
@@ -14,10 +14,10 @@ export default function Home() {
     const loadInitialArt = async () => {
       try {
         // Trae 4 obras para la bienvenida
-        const data = await GetArtworksList(4, 1);
+        const data = await GetArtworksSearch({ page: 1, limit: 4 });
         setArtworks(data);
       } catch (error) {
-        console.error("Error cargando el museo:", error);
+        console.error('Error cargando el museo:', error);
       } finally {
         setLoading(false);
       }
@@ -25,13 +25,16 @@ export default function Home() {
     loadInitialArt();
   }, []);
 
-  if (loading) return <div className={styles.loading}>Loading Collection...</div>;
+  if (loading)
+    return <div className={styles.loading}>Loading Collection...</div>;
 
   return (
     <section className={styles.homeContainer}>
       <header className={styles.hero}>
         <h1 className={styles.title}>THE LUMINAL</h1>
-        <Link to="/search" className="btn-gold">Explore Collection</Link>
+        <Link to="/search" className="btn-gold">
+          Explore Collection
+        </Link>
       </header>
 
       <ArtGrid>
