@@ -23,7 +23,6 @@ type ArtworkFieldConfig = {
 
 const artworkFields: ArtworkFieldConfig[] = [
   { key: 'title', label: 'Title' },
-  { key: 'short_description', label: 'Description' },
   { key: 'artist_display', label: 'Artist' },
   { key: 'main_reference_number', label: 'Main Reference Number' },
   { key: 'date_qualifier_title', label: 'Date Qualifier Title' },
