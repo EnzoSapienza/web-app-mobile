@@ -3,7 +3,8 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 40px 1rem 3rem 1rem;
+    padding: 1rem 0 3rem 0;
+
 }
 
 .hero {
@@ -28,14 +29,6 @@
     line-height: 1.1;
 }
 
-/* El contenedor de las tarjetas */
-.grid {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 1rem;
-}
-
 .filtersRow {
     display: flex;
     gap: 1rem;
@@ -55,7 +48,7 @@
 }
 
 .loading {
-    padding-top: 120px;
+    padding-top: 20%;
     text-align: center;
     font-family: var(--font-sans);
     color: var(--secondary);
