@@ -32,7 +32,7 @@ export default function ArtworkImage({ artwork }: Props) {
           alt={artwork?.title}
           loading="lazy"
           onLoad={() => setLoaded(true)}
-          onClick={() => setOpen(loaded && !isOpen)}
+          onClick={() => setOpen(loaded)}
         />
 
         {isOpen && (
