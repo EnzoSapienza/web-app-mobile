@@ -15,6 +15,10 @@
   --card-dark: #dadbdc;
   --font-serif: 'Noto Serif', serif;
   --font-sans: 'Inter', sans-serif;
+  --header-h: 60px;
+  --navbar-h: 70px;
+  --navbar-h-desktop: 50px;
+  --cols: 1;
 }
 
 * {
@@ -52,3 +56,8 @@ body {
 .btn-gold:hover {
   opacity: 0.9;
 }
+/* Responsive grid columns */
+/*ajusta dinamicamente la cantidad de columnas*/
+@media (min-width: 481px) { :root { --cols: 2; } }
+@media (min-width: 768px) { :root { --cols: 2; } }
+@media (min-width: 1024px) { :root { --cols: 3; } }
