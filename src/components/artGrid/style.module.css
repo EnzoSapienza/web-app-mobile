@@ -1,0 +1,13 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+}
+
+.item {
+    width: 100%;
+}

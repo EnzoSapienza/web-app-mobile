@@ -3,6 +3,7 @@ import GetArtworksSearch from '../../services/api/getArtworksSearch';
 import ArtCard from '../../components/artCard';
 import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
+import ArtGrid from '../../components/artGrid';
 
 export default function Search() {
   const [query, setQuery] = useState('');
@@ -108,15 +109,15 @@ export default function Search() {
         </button>
       </form>
 
-      <div className={styles.grid}>
+      <ArtGrid>
         {loading ? (
           <p className={styles.status}>Exploring archives...</p>
         ) : artworks.length > 0 ? (
           artworks.map((art) => <ArtCard key={art.id} art={art} />)
         ) : (
-          <p className={styles.status}>No results found.</p>
+        <p className={styles.status}>No results found.</p>
         )}
-      </div>
+      </ArtGrid>
 
       {/* PAGINACIÓN(10 elementos) */}
       {!loading && artworks.length > 0 && (

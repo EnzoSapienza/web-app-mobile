@@ -4,6 +4,7 @@ import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 import { Link } from 'react-router-dom';
 import ArtCard from '../../components/artCard';
+import ArtGrid from '../../components/artGrid';
 
 export default function Home() {
   const [artworks, setArtworks] = useState<Artwork[]>([]);
@@ -33,11 +34,11 @@ export default function Home() {
         <Link to="/search" className="btn-gold">Explore Collection</Link>
       </header>
 
-      <div className={styles.grid}>
+      <ArtGrid>
         {artworks.map((art) => (
           <ArtCard key={art.id} art={art} />
         ))}
-      </div>
+      </ArtGrid>
     </section>
   );
 }
