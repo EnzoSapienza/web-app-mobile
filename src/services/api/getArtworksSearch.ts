@@ -19,7 +19,6 @@ export default async function GetArtworksSearch({
   style,
 }: SearchParams): Promise<Artwork[]> {
   const from = Math.min((page - 1) * limit, 1000 - limit);
-  console.log({ page, from, limit });
 
   const queryParts: string[] = [];
 
