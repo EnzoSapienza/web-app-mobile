@@ -10,7 +10,7 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <HashRouter basename="/web-app-mobile/">
+    <HashRouter>
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
