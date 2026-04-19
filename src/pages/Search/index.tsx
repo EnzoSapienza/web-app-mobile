@@ -55,7 +55,7 @@ export default function Search() {
   return (
     <section className={styles.searchPage}>
       <header className={styles.searchHeader}>
-        <h1 className={styles.pageTitle}>Search</h1>
+        <h1 className="page-title">Search</h1>
         <p className={styles.pageSubtitle}>Explore world-class masterpieces.</p>
       </header>
 

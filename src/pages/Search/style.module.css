@@ -13,12 +13,6 @@
     text-align: center;
 }
 
-.pageTitle {
-    font-family: var(--font-serif);
-    font-size: 2.5rem;
-    color: var(--primary);
-}
-
 .searchForm {
     display: flex;
     flex-direction: column;

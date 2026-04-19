@@ -22,7 +22,7 @@ export default function Details() {
 
   return (
     <section className={styles.detailsPage}>
-      <h1 className={styles.artworkTitle}>{artwork?.title}</h1>
+      <h1 className="page-title">{artwork?.title}</h1>
 
       <ArtworkImage artwork={artwork} />
 
