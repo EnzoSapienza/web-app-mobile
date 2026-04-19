@@ -8,12 +8,15 @@ export default function useWishlist() {
 
   const addItem = (item: WishlistItem) => {
     if (!wishlist.find((i) => i.id === item.id)) {
-      setWishlist([...wishlist, item]);
+      setWishlist((prev) => {
+        if (prev.some((i) => i.id === item.id)) return prev;
+        return [...prev, item];
+      });
     }
   };
 
   const removeItem = (id: number) => {
-    setWishlist(wishlist.filter((item) => item.id !== id));
+    setWishlist((prev) => prev.filter((item) => item.id !== id));
   };
 
   const isInWishlist = (id: number) => wishlist.some((item) => item.id === id);
