@@ -7,4 +7,5 @@
 .artworkDescription {
     font-family: var(--font-sans);
     margin-top: 0;
+    margin-bottom: 1rem;
 }
