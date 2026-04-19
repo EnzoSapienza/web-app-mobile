@@ -7,12 +7,10 @@ export default function useWishlist() {
   const [wishlist, setWishlist] = useLocalStorage<WishlistItem[]>(KEY, []);
 
   const addItem = (item: WishlistItem) => {
-    if (!wishlist.find((i) => i.id === item.id)) {
-      setWishlist((prev) => {
-        if (prev.some((i) => i.id === item.id)) return prev;
-        return [...prev, item];
-      });
-    }
+    setWishlist((prev) => {
+      if (prev.some((i) => i.id === item.id)) return prev;
+      return [...prev, item];
+    });
   };
 
   const removeItem = (id: number) => {
