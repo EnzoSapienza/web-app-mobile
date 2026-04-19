@@ -6,7 +6,12 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
+}
+
+.imageContainer.imageLoaded {
+    background-image: none !important;
 }
 
 .image {
@@ -17,6 +22,7 @@
     transition: opacity 0.7s ease;
     transition: filter 0.7s ease;
     filter: blur(10px);
+    display: block;
 }
 
 .imageLoaded .image {
@@ -24,22 +30,27 @@
     filter: none;
 }
 
-.imageContainer.fullImage {
+.imageLightbox {
+    height: 100%;
+    width: 100%;
+}
+
+.imageLightbox.fullImage {
     position: fixed;
-    top: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: none !important;
+    left: -1dvw;
+    top: -1dvh;
+    width: 102dvw;
+    height: 102dvh;
+    padding: 1rem;
     background-color: rgba(0, 0, 0, 0.8);
     display: flex;
-    justify-content: "center";
-    align-items: "center";
+    justify-content: center;
+    align-items: center;
     z-index: 2000;
     border-radius: 0;
 }
 
-.imageContainer.fullImage .image {
+.fullImage .image {
     max-width: 100%;
     max-width: 100%;
     object-fit: contain;

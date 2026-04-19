@@ -23,7 +23,6 @@ export default function ArtworkImage({ artwork }: Props) {
         className={[
           styles.imageContainer,
           loaded ? styles.imageLoaded : '',
-          isOpen ? styles.fullImage : '',
         ].join(' ')}
         style={{ backgroundImage: `url(${artwork?.thumbnail?.lqip})` }}
       >
@@ -33,8 +32,25 @@ export default function ArtworkImage({ artwork }: Props) {
           alt={artwork?.title}
           loading="lazy"
           onLoad={() => setLoaded(true)}
-          onClick={() => setOpen(!isOpen)}
+          onClick={() => setOpen(loaded && !isOpen)}
         />
+
+        {isOpen && (
+          <div
+            className={[
+              styles.imageLightbox,
+              isOpen ? styles.fullImage : '',
+            ].join(' ')}
+            onClick={() => setOpen(false)}
+          >
+            <img
+              className={styles.image}
+              src={artwork?.imageUrl}
+              alt={artwork?.title}
+              loading="lazy"
+            />
+          </div>
+        )}
       </section>
     );
   else return <></>;

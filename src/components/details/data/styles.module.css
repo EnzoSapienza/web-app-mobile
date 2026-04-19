@@ -1,8 +1,9 @@
 @import url('/src/index.css');
 
 .artworkDetails {
-    border-radius: 0.5rem;
     overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
 }
 
 .artworkDetails * {
@@ -31,10 +32,10 @@
 }
 
 .artworkDetailsRow:nth-child(odd) {
-    background-color: var(--surface);
+    background-color: var(--card-light);
 }
 
 
 .artworkDetailsRow:nth-child(even) {
-    background-color: var(--surface-low);
+    background-color: var(--card-dark);
 }

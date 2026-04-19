@@ -1,3 +1,4 @@
+import type Artwork from '../../../interfaces/Responses/Artwork';
 import type Props from '../props';
 import styles from './styles.module.css';
 
@@ -7,48 +8,49 @@ interface RowProps {
 }
 
 const ArtworkDetailsRow = ({ fieldName, fieldContent }: RowProps) => {
-  if (fieldContent)
-    return (
-      <section className={styles.artworkDetailsRow}>
-        <div className={styles.artworkDetailsCol}>{fieldName}</div>
-        <div className={styles.artworkDetailsCol}>{fieldContent}</div>
-      </section>
-    );
-  else return <></>;
+  return (
+    <section className={styles.artworkDetailsRow}>
+      <div className={styles.artworkDetailsCol}>{fieldName}</div>
+      <div className={styles.artworkDetailsCol}>{fieldContent}</div>
+    </section>
+  );
 };
+
+type ArtworkFieldConfig = {
+  key: keyof Artwork;
+  label: string;
+};
+
+const artworkFields: ArtworkFieldConfig[] = [
+  { key: 'title', label: 'Title' },
+  { key: 'short_description', label: 'Description' },
+  { key: 'artist_display', label: 'Artist' },
+  { key: 'main_reference_number', label: 'Main Reference Number' },
+  { key: 'date_qualifier_title', label: 'Date Qualifier Title' },
+  { key: 'date_display', label: 'Creation Date' },
+  { key: 'place_of_origin', label: 'Place of Origin' },
+  { key: 'credit_line', label: 'Acquisition Credit Line' },
+];
 
 export default function ArtworkData({ artwork }: Props) {
   return (
     <section className={styles.artworkDetails}>
-      <ArtworkDetailsRow fieldName="Título" fieldContent={artwork?.title} />
-      <ArtworkDetailsRow
-        fieldName="Descripción"
-        fieldContent={artwork?.short_description}
-      />
-      <ArtworkDetailsRow
-        fieldName="Artista"
-        fieldContent={artwork?.artist_display}
-      />
-      <ArtworkDetailsRow
-        fieldName="Número de referencia primario"
-        fieldContent={artwork?.main_reference_number}
-      />
-      <ArtworkDetailsRow
-        fieldName="Título de fecha de calificación"
-        fieldContent={artwork?.date_qualifier_title}
-      />
-      <ArtworkDetailsRow
-        fieldName="Fecha de creación"
-        fieldContent={artwork?.date_display}
-      />
-      <ArtworkDetailsRow
-        fieldName="Lugar de origen"
-        fieldContent={artwork?.place_of_origin}
-      />
-      <ArtworkDetailsRow
-        fieldName="Créditos de adquisición"
-        fieldContent={artwork?.credit_line}
-      />
+      {artworkFields.map(({ key, label }) => {
+        const value = artwork?.[key];
+
+        if (!value || (typeof value !== 'string' && typeof value !== 'number'))
+          return null;
+
+        const content: number | string = value;
+
+        return (
+          <ArtworkDetailsRow
+            key={key}
+            fieldName={label}
+            fieldContent={content}
+          />
+        );
+      })}
     </section>
   );
 }

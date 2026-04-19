@@ -11,6 +11,8 @@
   --primary: #040c21;
   --secondary: #735b1e;
   --on-surface-variant: #45464d;
+  --card-light: #fafbfc;
+  --card-dark: #dadbdc;
   --font-serif: 'Noto Serif', serif;
   --font-sans: 'Inter', sans-serif;
 }
