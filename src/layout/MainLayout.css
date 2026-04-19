@@ -1,57 +1,22 @@
 .mainPage {
-    padding-top: 60px;
-    padding-bottom: 70px;
-}
-
-.searchPage {
     width: 100%;
+    min-height: 100vh;
+    padding: var(--header-h) 1rem var(--navbar-h) 1rem;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
-
-.searchForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
+/*Para landspace*/
+@media (min-width: 481px) {
+    .mainPage {
+        padding-top: calc(var(--header-h) + var(--navbar-h-desktop));
+        padding-bottom: 2rem;
+    }
 }
-
-.searchInput {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--secondary);
-    padding: 1rem 0;
-    font-family: var(--font-serif);
-    font-size: 1.8rem;
-    color: var(--primary);
-    outline: none;
-}
-
-.filtersRow {
-    display: flex;
-    gap: 1rem;
-}
-
-.select {
-    flex: 1;
-    background: var(--surface-low);
-    border: 1px solid var(--secondary);
-    color: var(--primary);
-    padding: 0.8rem;
-    font-family: var(--font-sans);
-    border-radius: 0.5rem;
-    outline: none;
-    cursor: pointer;
-}
-
-.grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.status {
-    text-align: center;
-    color: var(--secondary);
-    font-family: var(--font-sans);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+/* Para desktop */
+@media (min-width: 1024px) {
+    .mainPage {
+        max-width: 1200px;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
