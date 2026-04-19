@@ -12,13 +12,14 @@ interface SearchParams {
 
 export default async function GetArtworksSearch({
   page = 1,
-  limit = 10, // 10 por página
+  limit = 100, // 10 por página
   q,
   type,
   origin,
   style,
 }: SearchParams): Promise<Artwork[]> {
-  const from = (page - 1) * limit;
+  const from = Math.min((page - 1) * limit, 1000 - limit);
+  console.log({ page, from, limit });
 
   const queryParts: string[] = [];
 
