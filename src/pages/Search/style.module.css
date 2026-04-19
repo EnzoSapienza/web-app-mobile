@@ -1,7 +1,7 @@
 .searchPage {
     width: 100%;
-    padding: 40px 1rem 3rem 1rem;
-    min-height: 100vh;
+    padding: 1rem 0 3rem 0;
+    min-height: auto;
     background: linear-gradient(to bottom, #eeeeee 0%, var(--surface) 300px);
 }
 
@@ -10,6 +10,7 @@
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }
 
 .pageTitle {
@@ -22,7 +23,7 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto 3rem auto;
 }
 
@@ -30,7 +31,7 @@
     display: flex;
     align-items: center;
     background: white;
-    padding: 0.8rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
@@ -53,12 +54,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-}
-
-@media (min-width: 768px) {
-    .filtersRow {
-        flex-direction: row;
-    }
 }
 
 .select {
@@ -84,27 +79,6 @@
     background-color: white;
 }
 
-/* GRILLA */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-@media (min-width: 600px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
 /* PAGINACIÓN*/
 .pagination {
     display: flex;
@@ -118,6 +92,13 @@
 .pageNumber {
     font-family: var(--font-sans);
     font-weight: 700;
+}
+
+.pageSubtitle {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--on-surface-variant);
+    margin-top: 0.5rem;
 }
 
 .pagination button {
@@ -139,4 +120,13 @@
     text-align: center;
     padding: 4rem;
     color: var(--secondary);
+}
+
+/* Responsive */
+
+/* filtros */
+@media (min-width: 481px) {
+    .filtersRow {
+        flex-direction: row;
+    }
 }
