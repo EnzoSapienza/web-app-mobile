@@ -13,32 +13,44 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const types = ['Painting', 'Sculpture', 'Textiles', 'Furniture'];
   const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy'];
   const stylesList = ['Impressionism', 'Modernism', 'Surrealism', 'Baroque'];
 
-  const handleSearch = async (resetPage: boolean = false) => {
-    const currentPage = resetPage ? 1 : page;
-    if (resetPage) setPage(1);
-
-    setLoading(true);
-    const results = await GetArtworksSearch({
-      q: query,
-      type,
-      origin,
-      style,
-      page: currentPage,
-    });
-    setArtworks(results);
-    setLoading(false);
-    // Scrolleo suave hacia arriba si esta navegando páginas
-    if (!resetPage) window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   useEffect(() => {
-    handleSearch();
-  }, [page]);
+    let cancelled: boolean = false;
+
+    const fetchArtworks = async () => {
+      setLoading(true);
+      const results = await GetArtworksSearch({
+        q: query,
+        type,
+        origin,
+        style,
+        page,
+      });
+
+      if (!cancelled) {
+        setArtworks(results);
+        setLoading(false);
+        if (submitted) window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    fetchArtworks();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [page, submitted]);
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
+    setPage(1);
+    setSubmitted((prev) => !prev);
+  };
 
   return (
     <section className={styles.searchPage}>
@@ -47,13 +59,7 @@ export default function Search() {
         <p className={styles.pageSubtitle}>Explore world-class masterpieces.</p>
       </header>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleSearch(true);
-        }}
-        className={styles.searchForm}
-      >
+      <form onSubmit={handleSubmit} className={styles.searchForm}>
         <div className={styles.searchBarWrapper}>
           <span className={styles.searchIcon}>⚲</span>
           <input
