@@ -12,15 +12,10 @@ export default function Home() {
 
   useEffect(() => {
     const loadInitialArt = async () => {
-      try {
-        // Trae 4 obras para la bienvenida
-        const data = await GetArtworksSearch({ page: 1, limit: 4 });
-        setArtworks(data);
-      } catch (error) {
-        console.error('Error cargando el museo:', error);
-      } finally {
-        setLoading(false);
-      }
+      // Trae 4 obras para la bienvenida
+      const data = await GetArtworksSearch({ page: 1, limit: 4 });
+      setArtworks(data);
+      setLoading(false);
     };
     loadInitialArt();
   }, []);
@@ -31,7 +26,7 @@ export default function Home() {
   return (
     <section className={styles.homeContainer}>
       <header className={styles.hero}>
-        <h1 className={styles.title}>THE LUMINAL</h1>
+        <h1 className="page-title">THE LUMINAL</h1>
         <Link to="/search" className="btn-gold">
           Explore Collection
         </Link>
