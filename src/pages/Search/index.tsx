@@ -115,7 +115,7 @@ export default function Search() {
         ) : artworks.length > 0 ? (
           artworks.map((art) => <ArtCard key={art.id} art={art} />)
         ) : (
-        <p className={styles.status}>No results found.</p>
+          <p className={styles.status}>No results found.</p>
         )}
       </ArtGrid>
 
