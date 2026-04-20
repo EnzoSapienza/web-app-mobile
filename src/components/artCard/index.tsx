@@ -3,10 +3,12 @@ import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 
 interface Props {
-  art: Artwork;
+  art?: Artwork;
 }
 
 export default function ArtCard({ art }: Props) {
+  if (!art) return <></>;
+
   const displayTitle = art.title || 'Untitled Masterpiece';
   const displayArtist = art.artist_display || 'Unknown Artist';
 
