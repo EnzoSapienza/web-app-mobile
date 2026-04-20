@@ -33,7 +33,7 @@ export default function History() {
     };
 
     fetchArtworks();
-  }, [offset]);
+  }, [offset, history]);
 
   return (
     <section className="page-container">

@@ -34,7 +34,7 @@ export default function Wishlist() {
     };
 
     fetchArtworks();
-  }, [offset]);
+  }, [offset, wishlist]);
 
   return (
     <section className="page-container">
