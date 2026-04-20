@@ -26,6 +26,7 @@ export default function ArtCard({ art }: Props) {
   // Valor vacío
   if (!art || !art.imageUrl) return <></>;
 
+  // En caso de fallo en la imagen
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>
   ) => {
@@ -40,6 +41,7 @@ export default function ArtCard({ art }: Props) {
     }
   };
 
+  // Ruteo para que al volver atrás se le haga focus
   const goToDetailed = async (e: React.MouseEvent) => {
     if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
       return;
