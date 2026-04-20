@@ -153,7 +153,7 @@ export default function Search() {
           <span className={styles.pageNumber}>Page {page}</span>
           <button
             onClick={() => setPage((p) => p + 1)}
-            disabled={artworks.length < 10}
+            disabled={page >= 100 || artworks.length < 10}
           >
             Next →
           </button>
