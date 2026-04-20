@@ -41,24 +41,45 @@
 }
 
 /* Botón Champagne */
+.btn-silver,
 .btn-gold {
   display: inline-block;
-  background: linear-gradient(135deg, var(--secondary), #e3c37b);
-  color: white;
   text-decoration: none;
-  padding: 0.8rem 2rem;
   border-radius: 2rem;
   font-family: var(--font-sans);
-  font-weight: 500;
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-top: 1.5rem;
   transition: opacity 0.2s ease;
   border: none;
   cursor: pointer;
 }
 
-.btn-gold:hover {
+.btn-gold {
+  background: linear-gradient(135deg, var(--secondary), #e3c37b);
+  color: white;
+  padding: 0.8rem 2rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+.btn-silver {
+  background: linear-gradient(135deg, var(--primary), #aca7b9);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-weight: normal;
+  margin-top: 1rem;
+}
+
+.btn-gold:hover,
+.btn-silver:hover {
   opacity: 0.9;
+}
+
+.btn-gold:disabled,
+.btn-gold:disabled:hover,
+.btn-silver:disabled,
+.btn-silver:disabled:hover {
+  opacity: 1;
+  filter: brightness(70%);
 }

@@ -23,6 +23,7 @@
     transition: filter 0.7s ease;
     filter: blur(10px);
     display: block;
+    cursor: pointer;
 }
 
 .imageLoaded .image {
