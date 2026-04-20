@@ -17,8 +17,11 @@
   --font-sans: 'Inter', sans-serif;
   --header-h: 60px;
   --navbar-h: 70px;
-  --navbar-h-desktop: 50px;
+  --navbar-h-landscape: 75px;
+  --navbar-h-tablet: 80px;
+  --navbar-h-desktop: 70px;
   --cols: 1;
+  --nav-font-size: 0.7rem;
 }
 
 * {
@@ -40,17 +43,23 @@ body {
 @media (min-width: 481px) {
   :root {
     --cols: 2;
+    --navbar-h: var(--navbar-h-landscape);
+    --nav-font-size: 0.75rem;
   }
 }
 
 @media (min-width: 768px) {
   :root {
     --cols: 2;
+    --navbar-h: var(--navbar-h-tablet);
+    --nav-font-size: 0.8rem;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
     --cols: 3;
+    --navbar-h: var(--navbar-h-desktop);
+    --nav-font-size: 0.9rem;
   }
 }

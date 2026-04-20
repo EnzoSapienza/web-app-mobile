@@ -8,7 +8,7 @@
 /*Para landspace*/
 @media (min-width: 481px) {
     .mainPage {
-        padding-top: calc(var(--header-h) + var(--navbar-h-desktop));
+        padding-top: calc(var(--header-h) + var(--navbar-h));
         padding-bottom: 2rem;
     }
 }

@@ -24,7 +24,7 @@
     text-decoration: none;
     color: var(--on-surface-variant);
     font-family: var(--font-sans);
-    font-size: 0.7rem;
+    font-size: var(--nav-font-size);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -32,7 +32,6 @@
 @media (min-width: 1024px),
 (orientation: landscape) {
     .navbar {
-        height: var(--navbar-h-desktop);
         top: var(--header-h);
         bottom: auto;
         background: var(--surface-lowest);
