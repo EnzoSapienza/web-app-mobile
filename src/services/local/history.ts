@@ -6,14 +6,14 @@ const KEY = 'history';
 export default function useHistory() {
   const [history, setHistory] = useLocalStorage<HistoryItem[]>(KEY, []);
 
-  const addItem = (item: HistoryItem) => {
-    const cleanItem = { ...item, artwork: undefined };
+  const addItem = (item: HistoryItem | undefined) => {
+    if (!item) return;
 
     setHistory((prev) => {
-      if (prev[0]?.id === cleanItem.id) return prev;
+      if (prev[0]?.id === item.id) return prev;
 
-      const filtered: HistoryItem[] = prev.filter((i) => i.id != cleanItem.id);
-      return [cleanItem, ...filtered];
+      const filtered: HistoryItem[] = prev.filter((i) => i.id != item.id);
+      return [item, ...filtered];
     });
   };
 

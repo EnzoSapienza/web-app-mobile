@@ -24,8 +24,8 @@ export default function Details() {
   // Añadir al historial
   const { addItem } = useHistory();
   useEffect(() => {
-    addItem({ id: Number(id) });
-  }, []);
+    addItem(artwork);
+  }, [artwork]);
 
   return (
     <section className={styles.detailsPage}>

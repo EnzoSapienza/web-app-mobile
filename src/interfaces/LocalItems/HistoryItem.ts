@@ -1,6 +1,6 @@
-import type Artwork from '../Responses/Artwork';
-
 export default interface HistoryItem {
   id: number;
-  artwork?: Artwork;
+  title: string;
+  artist_display: string;
+  imageUrl: string;
 }

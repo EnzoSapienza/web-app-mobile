@@ -12,7 +12,7 @@ interface SearchParams {
 
 export default async function GetArtworksSearch({
   page = 1,
-  limit = 100, // 10 por página
+  limit = 10, // 10 por página
   q,
   type,
   origin,

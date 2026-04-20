@@ -3,14 +3,13 @@ import ArtGrid from '../../components/artGrid';
 import styles from './style.module.css';
 import ArtCard from '../../components/artCard';
 import useHistory from '../../services/local/history';
-import GetArtworksArr from '../../services/api/getArtworksArr';
-import type Artwork from '../../interfaces/Responses/Artwork';
+import type HistoryItem from '../../interfaces/LocalItems/HistoryItem';
 
 export default function History() {
   const limit = 10; // 10 cartas por carga
   const { history } = useHistory();
 
-  const [artworks, setArtworks] = useState<(Artwork | undefined)[]>([]);
+  const [artworks, setArtworks] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const [more, setMore] = useState(true);
@@ -19,13 +18,12 @@ export default function History() {
   useEffect(() => {
     const fetchArtworks = async () => {
       setLoading(true);
-      const sliced = history.slice(offset, offset + limit).map((i) => i.id);
-      const result = await GetArtworksArr(sliced);
+      const sliced = history.slice(offset, offset + limit);
 
       // Cargarlos
       setArtworks((prev) => {
         const existingIds = new Set(prev.map((a) => a?.id));
-        const filtered = result.filter((a) => !existingIds.has(a?.id));
+        const filtered = sliced.filter((a) => !existingIds.has(a?.id));
         return [...prev, ...filtered];
       });
 
