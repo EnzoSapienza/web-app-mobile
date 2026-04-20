@@ -3,13 +3,17 @@ import type HistoryItem from '../../interfaces/LocalItems/HistoryItem';
 
 const KEY = 'history';
 
-export default function useWishlist() {
+export default function useHistory() {
   const [history, setHistory] = useLocalStorage<HistoryItem[]>(KEY, []);
 
   const addItem = (item: HistoryItem) => {
+    const cleanItem = { ...item, artwork: undefined };
+
     setHistory((prev) => {
-      const filtered: HistoryItem[] = prev.filter((i) => i.id != item.id);
-      return [item, ...filtered];
+      if (prev[0]?.id === cleanItem.id) return prev;
+
+      const filtered: HistoryItem[] = prev.filter((i) => i.id != cleanItem.id);
+      return [cleanItem, ...filtered];
     });
   };
 
