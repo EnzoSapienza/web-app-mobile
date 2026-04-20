@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
-import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 
 interface Props {
-  art?: Artwork;
+  art?: {
+    id: number;
+    title: string;
+    imageUrl: string;
+    artist_display: string;
+  };
 }
 
 export default function ArtCard({ art }: Props) {

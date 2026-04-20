@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
 import useWishlist from '../../services/local/wishlist';
 import styles from './style.module.css';
-import type Artwork from '../../interfaces/Responses/Artwork';
-import GetArtworksArr from '../../services/api/getArtworksArr';
 import ArtGrid from '../../components/artGrid';
 import ArtCard from '../../components/artCard';
 import { Link } from 'react-router-dom';
+import type WishlistItem from '../../interfaces/LocalItems/WishlistItem';
 
 export default function Wishlist() {
   const limit = 10; // 10 cartas por carga
-  const { wishlist, addItem } = useWishlist();
+  const { wishlist } = useWishlist();
 
-  const [artworks, setArtworks] = useState<(Artwork | undefined)[]>([]);
+  const [artworks, setArtworks] = useState<WishlistItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const [more, setMore] = useState(true);
@@ -20,13 +19,12 @@ export default function Wishlist() {
   useEffect(() => {
     const fetchArtworks = async () => {
       setLoading(true);
-      const sliced = wishlist.slice(offset, offset + limit).map((i) => i.id);
-      const result = await GetArtworksArr(sliced);
+      const sliced = wishlist.slice(offset, offset + limit);
 
       // Cargarlos
       setArtworks((prev) => {
-        const existingIds = new Set(prev.map((a) => a?.id));
-        const filtered = result.filter((a) => !existingIds.has(a?.id));
+        const existingIds = new Set(prev.map((a) => a.id));
+        const filtered = sliced.filter((a) => !existingIds.has(a.id));
         return [...prev, ...filtered];
       });
 
