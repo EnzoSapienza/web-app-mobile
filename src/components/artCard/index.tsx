@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Link } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { useState } from 'react';
 
@@ -33,8 +33,18 @@ export default function ArtCard({ art }: Props) {
     }
   };
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const goToDetailed = () => {
+    navigate(`/details/${art.id}`, { state: { from: location } });
+  };
+
   return (
-    <Link to={`/details/${art.id}`} className={styles.cardLink}>
+    <button
+      onClick={goToDetailed}
+      className={styles.cardLink}
+      id={'art-card-' + art.id}
+    >
       <article className={styles.card}>
         <figure className={styles.figure}>
           <img
@@ -49,6 +59,6 @@ export default function ArtCard({ art }: Props) {
           <p className={styles.artistName}>{displayArtist}</p>
         </div>
       </article>
-    </Link>
+    </button>
   );
 }

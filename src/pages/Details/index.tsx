@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type Artwork from '../../interfaces/Responses/Artwork';
 import GetArtwork from '../../services/api/getArtwork';
 import { useEffect, useState } from 'react';
@@ -27,9 +27,28 @@ export default function Details() {
     addItem(artwork);
   }, [artwork]);
 
+  // Volver atrás
+  const navigate = useNavigate();
+  const location = useLocation();
+  const goBack = () => {
+    const fromPage = location.state?.from;
+
+    if (!fromPage) navigate('/');
+
+    const params = new URLSearchParams(fromPage?.search || '');
+    params.delete('focus');
+    params.append('focus', 'art-card-' + id);
+
+    navigate(`${fromPage?.pathname}?${params}`);
+  };
+
   return (
     <section className={styles.detailsPage}>
       <h1 className="page-title">{artwork?.title}</h1>
+
+      <button className="btn-silver" onClick={goBack}>
+        Atrás
+      </button>
 
       <ArtworkImage artwork={artwork} />
 

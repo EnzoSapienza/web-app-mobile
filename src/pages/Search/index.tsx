@@ -4,13 +4,18 @@ import ArtCard from '../../components/artCard';
 import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 import ArtGrid from '../../components/artGrid';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Search() {
-  const [query, setQuery] = useState('');
-  const [type, setType] = useState('');
-  const [origin, setOrigin] = useState('');
-  const [style, setStyle] = useState('');
-  const [page, setPage] = useState(1);
+  // Cargar los valores de la URL (si los hay)
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [query, setQuery] = useState(searchParams.get('query') || '');
+  const [type, setType] = useState(searchParams.get('type') || '');
+  const [origin, setOrigin] = useState(searchParams.get('origin') || '');
+  const [style, setStyle] = useState(searchParams.get('style') || '');
+  const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
+
   const [artworks, setArtworks] = useState<Artwork[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -19,8 +24,19 @@ export default function Search() {
   const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy'];
   const stylesList = ['Impressionism', 'Modernism', 'Surrealism', 'Baroque'];
 
+  const updateParams = async () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set('query', query);
+    newParams.set('origin', origin);
+    newParams.set('type', type);
+    newParams.set('style', style);
+    newParams.set('page', String(page));
+    setSearchParams(newParams, { replace: true });
+  };
+
   useEffect(() => {
     let cancelled: boolean = false;
+    updateParams();
 
     const fetchArtworks = async () => {
       setLoading(true);

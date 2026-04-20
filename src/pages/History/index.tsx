@@ -4,21 +4,23 @@ import styles from './style.module.css';
 import ArtCard from '../../components/artCard';
 import useHistory from '../../services/local/history';
 import type HistoryItem from '../../interfaces/LocalItems/HistoryItem';
+import { useSearchParams } from 'react-router-dom';
 
 export default function History() {
   const limit = 10; // 10 cartas por carga
   const { history } = useHistory();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const [artworks, setArtworks] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(false);
-  const [offset, setOffset] = useState(0);
+  const [offset, setOffset] = useState(Number(searchParams.get('offset')) || 0);
   const [more, setMore] = useState(true);
 
   // Buscar los artículos
   useEffect(() => {
     const fetchArtworks = async () => {
       setLoading(true);
-      const sliced = history.slice(offset, offset + limit);
+      const sliced = history.slice(0, offset + limit);
 
       // Cargarlos
       setArtworks((prev) => {
@@ -29,6 +31,8 @@ export default function History() {
 
       // Liberar
       setMore(history.length > offset + limit);
+      searchParams.set('offset', String(offset));
+      setSearchParams(searchParams, { replace: true });
       setLoading(false);
     };
 
