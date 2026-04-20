@@ -17,7 +17,7 @@ export default function ArtworkDescription({ title, text }: Props) {
 
     return (
       <section>
-        {title && <h2 className="page-subtitle">{title}</h2>}
+        {title && <h2 className="section-subtitle">{title}</h2>}
         <div
           className={styles.artworkDescription}
           dangerouslySetInnerHTML={{ __html: cleanHtml }}

@@ -34,47 +34,6 @@ body {
   line-height: 1.6;
 }
 
-/* Botón Champagne */
-.btn-gold {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--secondary), #e3c37b);
-  color: white;
-  text-decoration: none;
-  padding: 0.8rem 2rem;
-  border-radius: 2rem;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 1.5rem;
-  transition: opacity 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-gold:hover {
-  opacity: 0.9;
-}
-
-
-/* Estílos generales de título */
-.page-title {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin: 1rem 0;
-  line-height: 1.1;
-}
-
-.page-subtitle {
-  font-family: var(--font-sans);
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 0.7rem;
-  color: var(--secondary);
-}
-
 
 /* Responsive grid columns */
 /*ajusta dinamicamente la cantidad de columnas*/

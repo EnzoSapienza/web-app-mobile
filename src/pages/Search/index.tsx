@@ -53,11 +53,11 @@ export default function Search() {
   };
 
   return (
-    <section className={styles.searchPage}>
-      <header className={styles.searchHeader}>
+    <section className="page-container">
+      <section className="page-header">
         <h1 className="page-title">Search</h1>
-        <p className={styles.pageSubtitle}>Explore world-class masterpieces.</p>
-      </header>
+        <p className="page-subtitle">Explore world-class masterpieces.</p>
+      </section>
 
       <form onSubmit={handleSubmit} className={styles.searchForm}>
         <div className={styles.searchBarWrapper}>
