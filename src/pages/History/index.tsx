@@ -4,17 +4,22 @@ import styles from './style.module.css';
 import ArtCard from '../../components/artCard';
 import useHistory from '../../services/local/history';
 import type HistoryItem from '../../interfaces/LocalItems/HistoryItem';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 export default function History() {
   const limit = 10; // 10 cartas por carga
-  const { history } = useHistory();
+
+  // Ruteo
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+
+  const { history } = useHistory();
 
   const [artworks, setArtworks] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(Number(searchParams.get('offset')) || 0);
   const [more, setMore] = useState(true);
+  console.log(searchParams);
 
   // Buscar los artículos
   useEffect(() => {
@@ -32,7 +37,7 @@ export default function History() {
       // Liberar
       setMore(history.length > offset + limit);
       searchParams.set('offset', String(offset));
-      setSearchParams(searchParams, { replace: true });
+      setSearchParams(searchParams, { replace: true, state: location.state });
       setLoading(false);
     };
 

@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { useState } from 'react';
 
@@ -13,12 +12,20 @@ interface Props {
 }
 
 export default function ArtCard({ art }: Props) {
+  // Art data
+  const displayTitle = art?.title || 'Untitled Masterpiece';
+  const displayArtist = art?.artist_display || 'Unknown Artist';
+
+  // Fallos de imagen (muy chica, no encontrada)
+  const [errorCount, setErrorCount] = useState(0);
+
+  // Routing
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Valor vacío
   if (!art || !art.imageUrl) return <></>;
 
-  const displayTitle = art.title || 'Untitled Masterpiece';
-  const displayArtist = art.artist_display || 'Unknown Artist';
-
-  const [errorCount, setErrorCount] = useState(0);
   const handleImageError = (
     e: React.SyntheticEvent<HTMLImageElement, Event>
   ) => {
@@ -33,17 +40,26 @@ export default function ArtCard({ art }: Props) {
     }
   };
 
-  const navigate = useNavigate();
-  const location = useLocation();
-  const goToDetailed = () => {
-    navigate(`/details/${art.id}`, { state: { from: location } });
+  const goToDetailed = async (e: React.MouseEvent) => {
+    if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) {
+      return;
+    }
+    e.preventDefault?.();
+
+    await navigate(`${location.pathname}${location.search}`, {
+      replace: true,
+      state: { focusTo: art.id },
+    });
+
+    navigate(`/details/${art.id}`);
   };
 
   return (
-    <button
+    <Link
       onClick={goToDetailed}
       className={styles.cardLink}
       id={'art-card-' + art.id}
+      to={`/details/${art.id}`}
     >
       <article className={styles.card}>
         <figure className={styles.figure}>
@@ -59,6 +75,6 @@ export default function ArtCard({ art }: Props) {
           <p className={styles.artistName}>{displayArtist}</p>
         </div>
       </article>
-    </button>
+    </Link>
   );
 }

@@ -3,13 +3,16 @@ import useWishlist from '../../services/local/wishlist';
 import styles from './style.module.css';
 import ArtGrid from '../../components/artGrid';
 import ArtCard from '../../components/artCard';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import type WishlistItem from '../../interfaces/LocalItems/WishlistItem';
 
 export default function Wishlist() {
   const limit = 10; // 10 cartas por carga
   const { wishlist } = useWishlist();
+
+  // Routing
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const [artworks, setArtworks] = useState<WishlistItem[]>([]);
   const [loading, setLoading] = useState(false);
@@ -32,7 +35,7 @@ export default function Wishlist() {
       // Liberar
       setMore(wishlist.length > offset + limit);
       searchParams.set('offset', String(offset));
-      setSearchParams(searchParams, { replace: true });
+      setSearchParams(searchParams, { replace: true, state: location.state });
       setLoading(false);
     };
 

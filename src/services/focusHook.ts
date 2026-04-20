@@ -4,45 +4,23 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 export function useGlobalFocus() {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(location.state);
 
   useEffect(() => {
-    const targetId = searchParams.get('focus');
-    if (!targetId) return;
+    const id = location.state?.focusTo;
+    if (!id) return;
 
-    let observer: MutationObserver | null = null;
-
-    const tryFocus = () => {
-      const el = document.getElementById(targetId);
-
+    const interval = setInterval(() => {
+      const el = document.getElementById('art-card-' + id);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.scrollIntoView({ behavior: 'smooth' });
         el.focus?.();
-
-        searchParams.delete('focus');
-        setSearchParams(searchParams, { replace: true });
-
-        observer?.disconnect();
-        return true;
+        searchParams.delete('focusTo');
+        setSearchParams(searchParams, { replace: true, state: location.state });
+        clearInterval(interval);
       }
+    }, 100);
 
-      return false;
-    };
-
-    // Primer intento
-    if (tryFocus()) return;
-
-    // Segundo intento
-    observer = new MutationObserver(() => {
-      tryFocus();
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-
-    return () => {
-      observer?.disconnect();
-    };
-  }, [location.key]);
+    return () => clearInterval(interval);
+  }, [location, searchParams, setSearchParams]);
 }

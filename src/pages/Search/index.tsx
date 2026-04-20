@@ -4,12 +4,14 @@ import ArtCard from '../../components/artCard';
 import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 import ArtGrid from '../../components/artGrid';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 export default function Search() {
-  // Cargar los valores de la URL (si los hay)
+  // Manejo de ruteo
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
+  // Cargarlos a los SearchParam
   const [query, setQuery] = useState(searchParams.get('query') || '');
   const [type, setType] = useState(searchParams.get('type') || '');
   const [origin, setOrigin] = useState(searchParams.get('origin') || '');
@@ -31,7 +33,7 @@ export default function Search() {
     newParams.set('type', type);
     newParams.set('style', style);
     newParams.set('page', String(page));
-    setSearchParams(newParams, { replace: true });
+    setSearchParams(newParams, { replace: true, state: location.state });
   };
 
   useEffect(() => {
