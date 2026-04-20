@@ -1,1 +1,16 @@
-/* Estilo de página */
+.status {
+    text-align: center;
+    padding: 4rem;
+    color: var(--secondary);
+}
+
+.buttonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.buttonContainer .btn-gold {
+    margin: 0;
+}

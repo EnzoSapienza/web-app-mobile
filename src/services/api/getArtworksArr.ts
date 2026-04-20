@@ -1,19 +1,10 @@
 import type Artwork from '../../interfaces/Responses/Artwork';
 import GetArtwork from './getArtwork';
 
-interface IdsArr {
-  id: number;
-  artwork?: Artwork;
-}
-
 export default async function GetArtworksArr(
-  artworks_ids: IdsArr[]
-): Promise<IdsArr[]> {
-  const artworkFetchArr = artworks_ids.map(async (i) => {
-    const artwork = await GetArtwork(i.id);
-    i.artwork = artwork;
-  });
+  artworks_ids: number[]
+): Promise<(Artwork | undefined)[]> {
+  const artworkFetchArr = artworks_ids.map(async (id) => await GetArtwork(id));
 
-  await Promise.all(artworkFetchArr);
-  return artworks_ids;
+  return await Promise.all(artworkFetchArr);
 }
