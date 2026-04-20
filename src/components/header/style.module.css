@@ -10,7 +10,12 @@
     align-items: center;
     padding: 0 1.5rem;
     z-index: 1000;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.header.scrollDown {
+    transform: translateY(-100%);
 }
 
 .logo {
@@ -31,6 +36,7 @@
     font-size: 0.8rem;
     font-weight: 500;
 }
+
 .logo img {
     height: 60px;
     width: auto;

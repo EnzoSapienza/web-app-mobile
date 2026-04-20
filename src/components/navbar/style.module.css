@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
 .navbar ul {
@@ -27,21 +28,27 @@
     text-transform: uppercase;
     letter-spacing: 1px;
 }
-@media (min-width: 1024px), (orientation: landscape) {
+
+@media (min-width: 1024px),
+(orientation: landscape) {
     .navbar {
         height: var(--navbar-h-desktop);
         top: var(--header-h);
         bottom: auto;
         background: var(--surface-lowest);
-        border-bottom: 1px solid rgba(0,0,0,0.1);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar.scrollDown {
+        transform: translateY(-60px);
     }
 
     .navbar ul {
         max-width: 1200px;
-        margin: 0 auto; 
+        margin: 0 auto;
         gap: 2rem;
         padding: 0 1.5rem;
         justify-content: space-around;
         width: 100%;
-    } 
+    }
 }
