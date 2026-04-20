@@ -5,8 +5,8 @@
     margin: 0 auto;
     box-sizing: border-box;
 }
-/*Para landspace*/
-@media (min-width: 481px) {
+/*Para landspace o desktop*/
+@media (orientation: landscape), (min-width: 1024px) {
     .mainPage {
         padding-top: calc(var(--header-h) + var(--navbar-h));
         padding-bottom: 2rem;
