@@ -26,7 +26,7 @@
     flex: 1;
     border: none;
     outline: none;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 .filtersRow {
@@ -42,7 +42,7 @@
     color: var(--secondary);
     font-weight: 600;
     text-transform: uppercase;
-    font-size: 0.8rem;
+    font-size: 1rem;
     letter-spacing: 1px;
     appearance: none;
     cursor: pointer;
@@ -80,7 +80,7 @@
     padding: 0.5rem 1rem;
     border-radius: 20px;
     text-transform: uppercase;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     cursor: pointer;
 }
 
@@ -100,5 +100,28 @@
 @media (min-width: 481px) {
     .filtersRow {
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .select {
+        width: auto;
+        min-width: 150px; 
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .searchForm button {
+        align-self: center;
+    }
+    .searchBarWrapper {
+        padding: 0.3rem 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .searchForm {
+        max-width: 600px;
     }
 }
