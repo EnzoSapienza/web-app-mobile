@@ -6,6 +6,7 @@ import styles from './style.module.css';
 import ArtworkImage from '../../components/details/image';
 import ArtworkDescription from '../../components/details/description';
 import ArtworkData from '../../components/details/data/indext';
+import useHistory from '../../services/local/history';
 
 export default function Details() {
   const { id } = useParams();
@@ -19,6 +20,12 @@ export default function Details() {
     const fetchArtwork = async () => setArtwork(await GetArtwork(Number(id)));
     fetchArtwork();
   }, [id]);
+
+  // Añadir al historial
+  const { addItem } = useHistory();
+  useEffect(() => {
+    addItem({ id: Number(id) });
+  }, []);
 
   return (
     <section className={styles.detailsPage}>
