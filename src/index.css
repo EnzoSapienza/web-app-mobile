@@ -17,9 +17,9 @@
   --font-sans: 'Inter', sans-serif;
   --header-h: 60px;
   --navbar-h: 70px;
-  --navbar-h-landscape: 40px;
+  --navbar-h-landscape: 75px;
   --navbar-h-tablet: 80px;
-  --navbar-h-desktop: 70px;
+  --navbar-h-desktop: 40px;
   --cols: 1;
   --nav-font-size: 0.7rem;
 }
