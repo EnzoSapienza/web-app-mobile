@@ -33,6 +33,10 @@ export default function Details() {
   const goBack = () => {
     navigate(-1);
   };
+  const handleOpenWishlist = () => {
+    console.log("Abriendo formulario para añadir a favoritos...");
+    alert("¡Pronto: Formulario de preferencias!");
+  };
 
   return (
   <main className={styles.detailsPage}>
@@ -45,6 +49,10 @@ export default function Details() {
     <div className={styles.contentWrapper}>
       <section className={styles.imageSection}>
         <ArtworkImage artwork={artwork} />
+        <button className="btn-gold" onClick={handleOpenWishlist}>
+          <span className={styles.heartIcon}>❤</span>
+          Add to favorites
+        </button>
       </section>
 
       <section className={styles.infoSection}>

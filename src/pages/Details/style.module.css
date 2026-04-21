@@ -7,10 +7,44 @@
     margin: 0 auto;
 }
 
+.detailsPage h1 {
+    margin-bottom: 1.5rem;
+}
+
+.detailsPage > button {
+    align-self: flex-start;
+    margin-bottom: 2rem;
+}
+
 .contentWrapper {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+.imageSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.imageSection .btn-gold {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.heartIcon {
+    font-size: 1.1rem;
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 @media (min-width: 768px) {
@@ -24,16 +58,5 @@
     .imageSection {
         position: sticky;
         top: 2rem;
-        width: 100%; 
-    }
-
-    .infoSection {
-        padding-right: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
     }
 }
-
-.detailsPage h1 { margin-bottom: 1rem; }
-.detailsPage > button { align-self: flex-start; margin-bottom: 1.5rem; }
