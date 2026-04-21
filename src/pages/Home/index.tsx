@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const loadInitialArt = async () => {
       // Trae 4 obras para la bienvenida
-      const data = await GetArtworksSearch({ page: 1, limit: 4 });
+      const data = await GetArtworksSearch({ page: 1, limit: 6 });
       setArtworks(data);
       setLoading(false);
     };
