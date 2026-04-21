@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import type Props from '../props';
 import styles from './styles.module.css';
+import { createPortal } from 'react-dom';
 
 export default function ArtworkImage({ artwork }: Props) {
   // Para la miniatura hasta que carga la imagen
@@ -35,22 +36,21 @@ export default function ArtworkImage({ artwork }: Props) {
           onClick={() => setOpen(loaded)}
         />
 
-        {isOpen && (
-          <div
-            className={[
-              styles.imageLightbox,
-              isOpen ? styles.fullImage : '',
-            ].join(' ')}
-            onClick={() => setOpen(false)}
-          >
-            <img
-              className={styles.image}
-              src={artwork?.imageUrl}
-              alt={artwork?.title}
-              loading="lazy"
-            />
-          </div>
-        )}
+        {isOpen &&
+          createPortal(
+            <div
+              className={styles.imageLightbox}
+              onClick={() => setOpen(false)}
+            >
+              <img
+                className={styles.fullImage}
+                src={artwork?.imageUrl}
+                alt={artwork?.title}
+                loading="lazy"
+              />
+            </div>,
+            document.body
+          )}
       </section>
     );
   else return <></>;

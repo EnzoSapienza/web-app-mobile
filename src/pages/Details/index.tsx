@@ -43,14 +43,15 @@ export default function Details() {
       <h1 className="page-title">{artwork?.title}</h1>
 
       <button className="btn-silver" onClick={goBack}>
-        ← Back
+        <span className={styles.textIcon}>←</span>
+        Back
       </button>
 
       <div className={styles.contentWrapper}>
         <section className={styles.imageSection}>
           <ArtworkImage artwork={artwork} />
           <button className="btn-gold" onClick={handleOpenWishlist}>
-            <span className={styles.heartIcon}>❤</span>
+            <span className={styles.textIcon}>❤</span>
             Add to favorites
           </button>
         </section>

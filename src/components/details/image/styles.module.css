@@ -32,11 +32,6 @@
 }
 
 .imageLightbox {
-    height: 100%;
-    width: 100%;
-}
-
-.imageLightbox.fullImage {
     position: fixed;
     left: -1dvw;
     top: -1dvh;
@@ -49,11 +44,12 @@
     align-items: center;
     z-index: 2000;
     border-radius: 0;
+    cursor: pointer;
 }
 
-.fullImage .image {
+.fullImage {
     max-width: 100%;
-    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
 }
 
