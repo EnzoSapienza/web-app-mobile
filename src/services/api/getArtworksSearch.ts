@@ -19,21 +19,57 @@ export default async function GetArtworksSearch({
   style,
 }: SearchParams): Promise<Artwork[]> {
   const from = Math.min((page - 1) * limit, 1000 - limit);
+  const hasQuery = q && q.trim() !== '';
+  const hasFilters = !!(type || origin || style);
+  
+  // Define keyword: '*' para carga inicial, texto si existe query, vacío si solo filtros
+  const keyword = hasQuery ? q.trim() : (hasFilters ? '' : '*');
+  
+  const mustQueries: any[] = [];
 
-  const queryParts: string[] = [];
+  // Agrega query_string si existe keyword
+  if (keyword) {
+    mustQueries.push({
+      query_string: {
+        query: keyword
+      }
+    });
+  }
 
-  if (q && q.trim() !== '') queryParts.push(q.trim());
-  if (type) queryParts.push(`classification_title:"${type}"`);
-  if (origin) queryParts.push(`place_of_origin:"${origin}"`);
-  if (style) queryParts.push(`style_title:"${style}"`);
+  // Agrega filtros como términos exactos obligatorios
+  if (type) {
+    mustQueries.push({ term: { "classification_titles.keyword": type } });
+  }
+  if (origin) {
+    mustQueries.push({ term: { "place_of_origin.keyword": origin } });
+  }
+  if (style) {
+    mustQueries.push({ term: { "style_titles.keyword": style } });
+  }
 
-  const finalQuery = queryParts.length > 0 ? queryParts.join(' AND ') : '*';
-  const url = `${BASE_URL}/artworks/search?q=${encodeURIComponent(finalQuery)}&limit=${limit}&from=${from}&fields=id,title,artist_display,image_id`;
+  // Encapsula lógica en params con JSON estructurado
+  const queryPayload = {
+    query: {
+      bool: {
+        must: mustQueries
+      }
+    }
+  };
+
+  const url = `${BASE_URL}/artworks/search?params=${encodeURIComponent(JSON.stringify(queryPayload))}&limit=${limit}&from=${from}&fields=id,title,artist_display,image_id`;
 
   try {
     const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error en la petición: ${response.statusText}`);
+    }
+
     const content = await response.json();
-    if (!content.data) return [];
+
+    if (!content.data || content.data.length === 0) {
+      return [];
+    }
+
     return content.data.map((art: Artwork) => ({
       id: art.id,
       title: art.title || 'Untitled Piece',
