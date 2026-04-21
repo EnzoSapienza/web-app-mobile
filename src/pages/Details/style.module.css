@@ -1,7 +1,39 @@
 .detailsPage {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
-    padding: 40px 1rem 3rem 1rem;
+    padding: 1.5rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+.contentWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .contentWrapper {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 4rem;
+        align-items: start;
+    }
+
+    .imageSection {
+        position: sticky;
+        top: 2rem;
+        width: 100%; 
+    }
+
+    .infoSection {
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+.detailsPage h1 { margin-bottom: 1rem; }
+.detailsPage > button { align-self: flex-start; margin-bottom: 1.5rem; }

@@ -6,6 +6,7 @@ import styles from './style.module.css';
 import ArtworkImage from '../../components/details/image';
 import ArtworkDescription from '../../components/details/description';
 import ArtworkData from '../../components/details/data/indext';
+import AccordionSection from '../../components/details/accordion';
 import useHistory from '../../services/local/history';
 
 export default function Details() {
@@ -34,36 +35,30 @@ export default function Details() {
   };
 
   return (
-    <section className={styles.detailsPage}>
-      <h1 className="page-title">{artwork?.title}</h1>
+  <main className={styles.detailsPage}>
+    <h1 className="page-title">{artwork?.title}</h1>
 
       <button className="btn-silver" onClick={goBack}>
         Atrás
       </button>
 
-      <ArtworkImage artwork={artwork} />
+    <div className={styles.contentWrapper}>
+      <section className={styles.imageSection}>
+        <ArtworkImage artwork={artwork} />
+      </section>
 
-      <ArtworkDescription
-        title=""
-        text={artwork?.description || artwork?.short_description}
-      />
+      <section className={styles.infoSection}>
+        <ArtworkDescription
+          title=""
+          text={artwork?.description || artwork?.short_description}
+        />
+        <ArtworkData artwork={artwork} />
 
-      <ArtworkData artwork={artwork} />
-
-      <ArtworkDescription
-        title={'Publication History'}
-        text={artwork?.publication_history}
-      />
-
-      <ArtworkDescription
-        title={'Exhibition History'}
-        text={artwork?.exhibition_history}
-      />
-
-      <ArtworkDescription
-        title={'Acquisition History'}
-        text={artwork?.provenance_text}
-      />
-    </section>
+        <AccordionSection title="Publication History" content={artwork?.publication_history} />
+        <AccordionSection title="Exhibition History" content={artwork?.exhibition_history} />
+        <AccordionSection title="Acquisition History" content={artwork?.provenance_text} />
+      </section>
+    </div>
+  </main>
   );
 }
