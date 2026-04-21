@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { useState } from 'react';
+import placeholder from '../../../public/placeholder.png';
 
 interface Props {
   art?: {
@@ -36,7 +37,7 @@ export default function ArtCard({ art }: Props) {
       setErrorCount(1);
     } else if (errorCount === 1) {
       console.log('segundo error');
-      e.currentTarget.src = 'public/placeholder.png';
+      e.currentTarget.src = placeholder;
       setErrorCount(2);
     }
   };

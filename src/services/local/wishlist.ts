@@ -11,7 +11,18 @@ export default function useWishlist() {
 
     setWishlist((prev) => {
       if (prev.some((i) => i.id === item.id)) return prev;
-      return [...prev, item];
+      return [
+        ...prev,
+        {
+          id: item.id,
+          title: item.title,
+          artist_display: item.artist_display,
+          imageUrl: item.imageUrl,
+          priority: item.priority,
+          label: item.label,
+          note: item?.note,
+        },
+      ].sort((a, b) => b.priority - a.priority);
     });
   };
 

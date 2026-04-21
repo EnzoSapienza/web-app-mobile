@@ -13,7 +13,16 @@ export default function useHistory() {
       if (prev[0]?.id === item.id) return prev;
 
       const filtered: HistoryItem[] = prev.filter((i) => i.id != item.id);
-      return [item, ...filtered];
+
+      return [
+        {
+          id: item.id,
+          title: item.title,
+          artist_display: item.artist_display,
+          imageUrl: item.imageUrl,
+        },
+        ...filtered,
+      ];
     });
   };
 
