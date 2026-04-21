@@ -22,10 +22,9 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const types = ['Painting', 'Sculpture', 'Textiles', 'Furniture'];
-  const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy'];
-  const stylesList = ['Impressionism', 'Modernism', 'Surrealism', 'Baroque'];
-
+  const types = ['painting', 'sculpture', 'textiles', 'furniture', 'ceramics', 'jewelry', 'photography'];
+  const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy', 'China', 'Egypt', 'Greece', 'India', 'Spain','Netherlands', 'Germany', 'Russia', 'Brazil', 'Turkey', 'Iran'];
+  const stylesList = ['Impressionism', 'Modernism', 'Surrealism', 'Post-Impressionism','Japanese (culture or style)', 'Renaissance', 'Baroque', 'Cubism', 'Abstract Expressionism', 'Realism', 'Neoclassicism'];
   const updateParams = async () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set('query', query);
@@ -137,7 +136,9 @@ export default function Search() {
         {loading ? (
           <p className={styles.status}>Exploring archives...</p>
         ) : artworks.length > 0 ? (
-          artworks.map((art) => <ArtCard key={art.id} art={art} />)
+          artworks.map((art) => (
+            <ArtCard key={art.id} art={art} />
+          ))
         ) : (
           <p className={styles.status}>No results found.</p>
         )}
