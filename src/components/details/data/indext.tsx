@@ -28,6 +28,9 @@ const artworkFields: ArtworkFieldConfig[] = [
   { key: 'date_qualifier_title', label: 'Date Qualifier Title' },
   { key: 'date_display', label: 'Creation Date' },
   { key: 'place_of_origin', label: 'Place of Origin' },
+  { key: 'classification_title', label: 'Category' },
+  { key: 'style_title', label: 'Style' },
+  { key: 'medium_display', label: 'Medium/Technique' },
   { key: 'credit_line', label: 'Acquisition Credit Line' },
 ];
 

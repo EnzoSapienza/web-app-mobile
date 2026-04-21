@@ -30,4 +30,7 @@ export default interface Artwork {
   publication_history: string;
   provenance_text: string;
   exhibition_history: string;
+  classification_title?: string;
+  style_title?: string;
+  medium_display?: string;
 }
