@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function useGlobalFocus() {
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(location.state);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const id = location.state?.focusTo;
@@ -15,12 +14,16 @@ export function useGlobalFocus() {
       if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
         el.focus?.();
-        searchParams.delete('focusTo');
-        setSearchParams(searchParams, { replace: true, state: location.state });
+
+        const { focusTo, ...newState } = location.state;
+        navigate(`${location.pathname}${location.search}`, {
+          replace: true,
+          state: newState,
+        });
         clearInterval(interval);
       }
     }, 100);
 
     return () => clearInterval(interval);
-  }, [location, searchParams, setSearchParams]);
+  }, [location, navigate]);
 }

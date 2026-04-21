@@ -9,6 +9,10 @@ export default function useWishlist() {
   const addToList = (item: WishlistItem | undefined) => {
     if (!item) return;
 
+    item.priority = Math.floor(item.priority);
+    item.priority = Math.min(5, item.priority);
+    item.priority = Math.max(0, item.priority);
+
     setWishlist((prev) => {
       if (prev.some((i) => i.id === item.id)) return prev;
       return [

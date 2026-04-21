@@ -34,39 +34,48 @@ export default function Details() {
     navigate(-1);
   };
   const handleOpenWishlist = () => {
-    console.log("Abriendo formulario para añadir a favoritos...");
-    alert("¡Pronto: Formulario de preferencias!");
+    console.log('Abriendo formulario para añadir a favoritos...');
+    alert('¡Pronto: Formulario de preferencias!');
   };
 
   return (
-  <main className={styles.detailsPage}>
-    <h1 className="page-title">{artwork?.title}</h1>
+    <main className={styles.detailsPage}>
+      <h1 className="page-title">{artwork?.title}</h1>
 
       <button className="btn-silver" onClick={goBack}>
-        Atrás
+        ← Back
       </button>
 
-    <div className={styles.contentWrapper}>
-      <section className={styles.imageSection}>
-        <ArtworkImage artwork={artwork} />
-        <button className="btn-gold" onClick={handleOpenWishlist}>
-          <span className={styles.heartIcon}>❤</span>
-          Add to favorites
-        </button>
-      </section>
+      <div className={styles.contentWrapper}>
+        <section className={styles.imageSection}>
+          <ArtworkImage artwork={artwork} />
+          <button className="btn-gold" onClick={handleOpenWishlist}>
+            <span className={styles.heartIcon}>❤</span>
+            Add to favorites
+          </button>
+        </section>
 
-      <section className={styles.infoSection}>
-        <ArtworkDescription
-          title=""
-          text={artwork?.description || artwork?.short_description}
-        />
-        <ArtworkData artwork={artwork} />
+        <section className={styles.infoSection}>
+          <ArtworkDescription
+            title=""
+            text={artwork?.description || artwork?.short_description}
+          />
+          <ArtworkData artwork={artwork} />
 
-        <AccordionSection title="Publication History" content={artwork?.publication_history} />
-        <AccordionSection title="Exhibition History" content={artwork?.exhibition_history} />
-        <AccordionSection title="Acquisition History" content={artwork?.provenance_text} />
-      </section>
-    </div>
-  </main>
+          <AccordionSection
+            title="Publication History"
+            content={artwork?.publication_history}
+          />
+          <AccordionSection
+            title="Exhibition History"
+            content={artwork?.exhibition_history}
+          />
+          <AccordionSection
+            title="Acquisition History"
+            content={artwork?.provenance_text}
+          />
+        </section>
+      </div>
+    </main>
   );
 }
