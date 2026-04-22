@@ -5,10 +5,10 @@
     margin: 0 auto;
     box-sizing: border-box;
 }
-/*Para landspace o desktop*/
-@media (orientation: landscape), (min-width: 1024px) {
+/*Para landspace*/
+@media (orientation: landscape) {
     .mainPage {
-        padding-top: calc(var(--header-h) + var(--navbar-h));
+        padding-top: var(--header-h);
         padding-bottom: 2rem;
     }
 }
@@ -16,7 +16,7 @@
 @media (min-width: 1024px) {
     .mainPage {
         max-width: 1200px;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-top: var(--header-h);
+        padding-bottom: 2rem;
     }
 }
