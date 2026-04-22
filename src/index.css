@@ -17,11 +17,8 @@
   --font-sans: 'Inter', sans-serif;
   --header-h: 60px;
   --navbar-h: 70px;
-  --navbar-h-landscape: 75px;
-  --navbar-h-tablet: 80px;
-  --navbar-h-desktop: 40px;
-  --cols: 1;
   --nav-font-size: 0.7rem;
+  --cols: 1;
 }
 
 * {
@@ -38,12 +35,11 @@ body {
 }
 
 
-/* Responsive grid columns */
-/*ajusta dinamicamente la cantidad de columnas*/
+/* Responsive: ajusta variables CSS según el ancho de pantalla */
 @media (min-width: 481px) {
   :root {
     --cols: 2;
-    --navbar-h: var(--navbar-h-landscape);
+    --header-h: 65px;
     --nav-font-size: 0.75rem;
   }
 }
@@ -51,7 +47,8 @@ body {
 @media (min-width: 768px) {
   :root {
     --cols: 2;
-    --navbar-h: var(--navbar-h-tablet);
+    --header-h: 70px;
+    --navbar-h: 75px;
     --nav-font-size: 0.8rem;
   }
 }
@@ -59,7 +56,7 @@ body {
 @media (min-width: 1024px) {
   :root {
     --cols: 3;
-    --navbar-h: var(--navbar-h-desktop);
+    --header-h: 60px;
     --nav-font-size: 0.9rem;
   }
 }
