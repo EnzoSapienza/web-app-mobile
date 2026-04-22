@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './style.module.css';
-import logo from '../../../public/logo.svg';
+import logo from '../../assets/logo.svg';
 import useScrollDirection from '../../services/useScollDirection';
 
 export default function Header() {
