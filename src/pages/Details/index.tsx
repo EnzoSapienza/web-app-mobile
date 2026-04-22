@@ -58,7 +58,6 @@ export default function Details() {
 
         <section className={styles.infoSection}>
           <ArtworkDescription
-            title=""
             text={artwork?.description || artwork?.short_description}
           />
           <ArtworkData artwork={artwork} />

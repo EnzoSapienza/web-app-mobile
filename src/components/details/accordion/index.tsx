@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styles from './style.module.css';
+import DOMPurify from 'dompurify';
 
 interface Props {
   title: string;
@@ -10,6 +11,13 @@ export default function AccordionSection({ title, content }: Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   if (!content) return null;
+
+  const rawHtml = content || '';
+
+  const cleanHtml = DOMPurify.sanitize(rawHtml, {
+    ALLOWED_TAGS: ['p', 'em', 'a', 'br', 'strong'],
+    ALLOWED_ATTR: ['href', 'target', 'rel'],
+  });
 
   return (
     <div className={styles.accordionItem}>
@@ -23,7 +31,7 @@ export default function AccordionSection({ title, content }: Props) {
 
       {isOpen && (
         <div className={styles.accordionContent}>
-          <p>{content}</p>
+          <p>{cleanHtml}</p>
         </div>
       )}
     </div>

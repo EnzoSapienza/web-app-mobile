@@ -1,7 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { useState } from 'react';
-import placeholder from '../../../public/placeholder.png';
+import placeholder from '../../assets/placeholder.png';
 
 interface Props {
   art?: {

@@ -2,4 +2,26 @@
     font-family: var(--font-sans);
     margin-top: 0;
     margin-bottom: 1rem;
+    display: block;
+    overflow: visible;
+}
+
+.folded {
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width:768px) {
+    .folded {
+        -webkit-line-clamp: 5;
+    }
+}
+
+@media (min-width: 1024px) {
+    .folded {
+        -webkit-line-clamp: 7;
+    }
 }
