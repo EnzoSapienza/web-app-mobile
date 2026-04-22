@@ -41,7 +41,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 
@@ -50,4 +50,8 @@
     font-size: 0.85rem;
     color: var(--secondary);
     margin-top: 0.3rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
