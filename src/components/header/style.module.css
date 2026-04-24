@@ -24,16 +24,21 @@
     font-family: var(--font-serif);
     font-weight: 700;
     letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
 
 .logo img {
-    height: var(--header-h);
+    height: 70%;
     width: auto;
+    display: block;
+    transition: height 0.3s ease;
 }
 
 .contactBtn {
-    background: linear-gradient(135deg, var(--secondary), #e3c37b);
-    color: white;
+    background: linear-gradient(135deg, var(--secondary), var(--btn-gold-end));
+    color: var(--surface-lowest);
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
@@ -44,6 +49,32 @@
 
 .header nav {
     margin-left: auto;
+}
+/* Agrupar los botones en el Header */
+.navGroup {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.themeBtn {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.themeBtn:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
 }
 
 @media (min-width: 768px) {
@@ -56,5 +87,8 @@
     .contactBtn {
         padding: 0.7rem 1.3rem;
         font-size: 0.9rem;
+    }
+    .logo img {
+        height: 80%;
     }
 }
