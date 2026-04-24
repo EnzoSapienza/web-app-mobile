@@ -8,6 +8,8 @@ import ArtworkDescription from '../../components/details/description';
 import ArtworkData from '../../components/details/data/indext';
 import AccordionSection from '../../components/details/accordion';
 import useHistory from '../../services/local/history';
+import useWishlist from '../../services/local/wishlist';
+import WishlistModal, { type WishlistFormData } from '../../components/details/WishListModal';
 
 export default function Details() {
   const { id } = useParams();
@@ -28,15 +30,38 @@ export default function Details() {
     addItem(artwork);
   }, [addItem, artwork]);
 
+  // Modal y Wishlist
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addToList, isInWishlist } = useWishlist();
+
   // Volver atrás
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
   };
   const handleOpenWishlist = () => {
-    console.log('Abriendo formulario para añadir a favoritos...');
-    alert('¡Pronto: Formulario de preferencias!');
+    setIsModalOpen(true);
   };
+  const handleCloseWishlist = () => {
+    setIsModalOpen(false);
+  };
+  const handleSubmitWishlist = (formData: WishlistFormData) => {
+    if (!artwork) return;
+
+    addToList({
+      id: artwork.id,
+      title: artwork.title,
+      artist_display: artwork.artist_display || '',
+      imageUrl: artwork.imageUrl || '',
+      priority: formData.priority,
+      label: formData.label,
+      note: formData.note || undefined,
+    });
+
+    setIsModalOpen(false);
+  };
+  const isAlreadyInWishlist = artwork ? isInWishlist(artwork.id) : false;
+
 
   return (
     <main className={styles.detailsPage}>
@@ -50,9 +75,16 @@ export default function Details() {
       <div className={styles.contentWrapper}>
         <section className={styles.imageSection}>
           <ArtworkImage artwork={artwork} />
-          <button className="btn-gold" onClick={handleOpenWishlist}>
-            <span className={styles.textIcon}>❤</span>
-            Add to favorites
+          <button
+            className={['btn-gold', styles.wishlistBtn].join(' ')}
+            onClick={handleOpenWishlist}
+            disabled={isAlreadyInWishlist}
+            title={isAlreadyInWishlist ? 'Already in Wishlist' : 'Add to Wishlist'}
+          >
+            <span className={styles.textIcon}>
+              {isAlreadyInWishlist ? '♥' : '♡'}
+            </span>
+            {isAlreadyInWishlist ? 'In Wishlist' : 'Add to Wishlist'}
           </button>
         </section>
 
@@ -76,6 +108,12 @@ export default function Details() {
           />
         </section>
       </div>
+      <WishlistModal
+        isOpen={isModalOpen}
+        onClose={handleCloseWishlist}
+        onSubmit={handleSubmitWishlist}
+        artwork={artwork}
+      />
     </main>
   );
 }

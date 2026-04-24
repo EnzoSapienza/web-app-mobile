@@ -29,16 +29,18 @@
     width: 100%;
 }
 
-.imageSection .btn-gold {
+.wishlistBtn {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 100%;
+    margin-top: 0;
+    padding: 1rem;
 }
 
 .textIcon {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .infoSection {
@@ -58,5 +60,12 @@
     .imageSection {
         position: sticky;
         top: 2rem;
+    }
+    .wishlistBtn {
+        width: fit-content;
+        align-self: center;
+        padding: 0.8rem 2.5rem;
+        font-size: 0.9rem;
+        margin-top: 1rem;
     }
 }
