@@ -3,7 +3,7 @@
   width: 100%;
   padding: 1rem 0 3rem 0;
   min-height: auto;
-  background: linear-gradient(to bottom, #eeeeee 0%, var(--surface) 300px);
+  background: linear-gradient(to bottom, var(--surface-low) 0%, var(--surface) 300px);
 }
 
 .page-header {
@@ -17,23 +17,20 @@
 /* Títulos */
 .page-title {
   text-align: center;
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: var(--page-title-size);
   color: var(--primary);
   margin: 1rem 0;
   line-height: 1.1;
 }
 
 .page-subtitle {
-  font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: var(--page-subtitle-size);
   color: var(--on-surface-variant);
   margin-top: 0.5rem;
 }
 
 .section-title {
   text-align: left;
-  font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 0.7rem;
@@ -46,7 +43,6 @@
   display: inline-block;
   text-decoration: none;
   border-radius: 2rem;
-  font-family: var(--font-sans);
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -56,16 +52,16 @@
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, var(--secondary), #e3c37b);
-  color: white;
+  background: linear-gradient(135deg, var(--secondary), var(--btn-gold-end));
+  color: var(--surface-lowest);
   padding: 0.8rem 2rem;
   font-weight: bold;
   margin-top: 1.5rem;
 }
 
 .btn-silver {
-  background: linear-gradient(135deg, var(--primary), #aca7b9);
-  color: white;
+  background: linear-gradient(135deg, var(--primary),var(--btn-silver-end));
+  color: var(--surface-lowest);
   padding: 0.6rem 1.2rem;
   font-weight: normal;
   margin-top: 1rem;
