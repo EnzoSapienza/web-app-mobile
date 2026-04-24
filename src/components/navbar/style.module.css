@@ -27,7 +27,6 @@
 .navbar a {
     text-decoration: none;
     color: var(--on-surface-variant);
-    font-family: var(--font-sans);
     font-size: var(--nav-font-size);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -49,7 +48,7 @@
         top: 0;
         bottom: auto;
         left: auto;
-        right: 130px;
+        right: 190px;
         width: auto;
         height: var(--header-h);
         background: transparent;

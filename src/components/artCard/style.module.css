@@ -5,7 +5,7 @@
 }
 
 .card {
-    background: white;
+    background: var(--surface-lowest);
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -18,7 +18,7 @@
     height: 250px;
     margin: 0;
     overflow: hidden;
-    background-color: #f0f0f0;
+    background-color: var(--surface-low);
 }
 
 .image {
@@ -33,7 +33,6 @@
 }
 
 .artTitle {
-    font-family: var(--font-serif);
     font-size: 1.1rem;
     margin: 0;
     color: var(--primary);

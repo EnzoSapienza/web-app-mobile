@@ -9,7 +9,7 @@
 .searchBarWrapper {
     display: flex;
     align-items: center;
-    background: white;
+    background: var(--surface-lowest);
     padding: 0.5rem 1rem;
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -27,6 +27,8 @@
     border: none;
     outline: none;
     font-size: 1.1rem;
+    background-color: transparent;
+    color: var(--primary);
 }
 
 .filtersRow {
@@ -54,8 +56,8 @@
     text-transform: none;
     font-weight: normal;
     font-size: 1rem;
-    color: black;
-    background-color: white;
+    color:var(--primary);
+    background-color: var(--surface-lowest);
 }
 
 /* PAGINACIÓN*/
@@ -69,7 +71,6 @@
 }
 
 .pageNumber {
-    font-family: var(--font-sans);
     font-weight: 700;
 }
 
@@ -108,7 +109,7 @@
     }
     .select {
         width: auto;
-        min-width: 150px; 
+        min-width: 150px;
         text-align: center;
         font-size: 0.9rem;
     }
