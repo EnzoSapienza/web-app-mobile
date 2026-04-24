@@ -1,7 +1,7 @@
 .artworkDetails {
     margin-bottom: 3rem;
     background: var(--surface-lowest);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 1rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
 }
@@ -13,7 +13,7 @@
 .artworkDetailsRow {
     display: flex;
     flex-direction: column;
-    padding: 1.2rem 0;
+    padding: 0.8rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -41,14 +41,18 @@
 }
 
 @media (min-width: 768px) {
+    .artworkDetails {
+        padding: 1.8rem;
+    }
     .artworkDetailsRow {
         flex-direction: row;
         align-items: baseline;
         gap: 2rem;
+        padding: 0.5rem 0;
     }
 
     .artworkDetailsCol:first-child {
-        flex: 0 0 35%;
+        flex: 0 0 30%;
         margin-bottom: 0;
     }
 
