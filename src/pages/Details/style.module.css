@@ -33,33 +33,52 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     margin-top: 0;
     padding: 1rem;
-}
-
-.textIcon {
-    font-size: 1.2rem;
 }
 
 .infoSection {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    min-width: 0;
 }
 
+.wishlistSection {
+    margin-top: 2rem;
+    width: 100%;
+}
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.visible {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+@media (orientation: landscape) {
+    .wishlistBtn {
+        width: fit-content;
+        padding: 0.8rem 2rem;
+    }
+}
 @media (min-width: 768px) {
     .contentWrapper {
         display: grid;
         grid-template-columns: 0.8fr 1.2fr;
         gap: 4rem;
         align-items: start;
+        align-self: flex-start;
     }
 
     .imageSection {
         position: sticky;
         top: 2rem;
+        min-width: 0;
     }
     .wishlistBtn {
         width: fit-content;
@@ -67,5 +86,10 @@
         padding: 0.8rem 2.5rem;
         font-size: 0.9rem;
         margin-top: 1rem;
+    }
+    .wishlistSection {
+        grid-column: 1 / -1;
+        max-width: 500px;
+        margin: 2rem auto 0;
     }
 }

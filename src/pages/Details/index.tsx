@@ -10,6 +10,8 @@ import AccordionSection from '../../components/details/accordion';
 import useHistory from '../../services/local/history';
 import useWishlist from '../../services/local/wishlist';
 import WishlistModal, { type WishlistFormData } from '../../components/details/WishListModal';
+import WishlistPreview from '../../components/details/wishlistPreview';
+
 
 export default function Details() {
   const { id } = useParams();
@@ -19,20 +21,27 @@ export default function Details() {
 
   // Fetch
   const [artwork, setArtwork] = useState<Artwork>();
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
-    const fetchArtwork = async () => setArtwork(await GetArtwork(Number(id)));
+    const fetchArtwork = async () => {
+      const data = await GetArtwork(Number(id));
+      setArtwork(data);
+      setIsReady(true);
+    };
     fetchArtwork();
   }, [id]);
 
   // Añadir al historial
   const { addItem } = useHistory();
   useEffect(() => {
-    addItem(artwork);
+    if (artwork) addItem(artwork);
   }, [addItem, artwork]);
 
   // Modal y Wishlist
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { addToList, isInWishlist } = useWishlist();
+  const { wishlist, addToList, removeItem, isInWishlist } = useWishlist();
+  const wishlistItem = artwork ? wishlist.find((item) => item.id === artwork.id) : null;
 
   // Volver atrás
   const navigate = useNavigate();
@@ -65,9 +74,11 @@ export default function Details() {
 
   return (
     <main className={styles.detailsPage}>
-      <h1 className="page-title">{artwork?.title}</h1>
-
-      <button className="btn-silver" onClick={goBack}>
+      <h1 className={`.page-title-detail ${isReady ? styles.visible : styles.hidden}`}>
+          {artwork?.title}
+      </h1>
+      <button className={`btn-silver ${isReady ? styles.visible : styles.hidden}`}
+      onClick={goBack}>
         <span className={styles.textIcon}>←</span>
         Back
       </button>
@@ -75,17 +86,23 @@ export default function Details() {
       <div className={styles.contentWrapper}>
         <section className={styles.imageSection}>
           <ArtworkImage artwork={artwork} />
-          <button
-            className={['btn-gold', styles.wishlistBtn].join(' ')}
-            onClick={handleOpenWishlist}
-            disabled={isAlreadyInWishlist}
-            title={isAlreadyInWishlist ? 'Already in Wishlist' : 'Add to Wishlist'}
-          >
-            <span className={styles.textIcon}>
-              {isAlreadyInWishlist ? '♥' : '♡'}
-            </span>
-            {isAlreadyInWishlist ? 'In Wishlist' : 'Add to Wishlist'}
-          </button>
+          {!isAlreadyInWishlist ? (
+            <button
+              className={['btn-gold', styles.wishlistBtn, isReady ? styles.visible : styles.hidden].join(' ')}
+              onClick={handleOpenWishlist}
+              title="Add to Wishlist"
+            >
+              Add to Wishlist
+            </button>
+          ) : (
+            <button
+              className={['btn-silver', styles.wishlistBtn, isReady ? styles.visible : styles.hidden].join(' ')}
+              onClick={() => removeItem(artwork!.id)}
+              title="Remove from Wishlist"
+            >
+              Remove from Wishlist
+            </button>
+          )}
         </section>
 
         <section className={styles.infoSection}>
@@ -106,8 +123,17 @@ export default function Details() {
             title="Acquisition History"
             content={artwork?.provenance_text}
           />
+
+          {isAlreadyInWishlist && (
+            <WishlistPreview
+              priority={wishlistItem?.priority}
+              label={wishlistItem?.label}
+              note={wishlistItem?.note}
+            />
+          )}
         </section>
       </div>
+
       <WishlistModal
         isOpen={isModalOpen}
         onClose={handleCloseWishlist}
