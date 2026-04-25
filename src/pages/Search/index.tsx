@@ -22,8 +22,8 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const types = ['painting', 'sculpture', 'textiles', 'furniture', 'ceramics', 'jewelry', 'photography'];
-  const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy', 'China', 'Egypt', 'Greece', 'India', 'Spain','Netherlands', 'Germany', 'Russia', 'Brazil', 'Turkey', 'Iran'];
+  const types = ['painting', 'sculpture', 'textile', 'furniture', 'ceramics', 'jewelry', 'photography'];
+  const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy', 'China', 'Egypt', 'Greece', 'India', 'Spain','Netherlands', 'Germany', 'Russia', 'Brazil', 'South Korea', 'Iran'];
   const stylesList = ['Impressionism', 'Modernism', 'Surrealism', 'Post-Impressionism','Japanese (culture or style)', 'Renaissance', 'Baroque', 'Cubism', 'Abstract Expressionism', 'Realism', 'Neoclassicism'];
   const updateParams = async () => {
     const newParams = new URLSearchParams(searchParams);
