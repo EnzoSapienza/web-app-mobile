@@ -29,6 +29,13 @@
   margin-top: 0.5rem;
 }
 
+.page-title-detail {
+	text-align: center;
+	font-size: var(--detail-title-size);
+	color: var(--primary);
+	margin: 1rem 0;
+	line-height: 1.1;
+}
 .section-title {
   text-align: left;
   text-transform: uppercase;
