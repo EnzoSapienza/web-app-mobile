@@ -92,32 +92,46 @@ export default function WishlistModal({
 
         {/* Curation Label */}
         <div className={styles.section}>
-          <label htmlFor="label" className={styles.fieldLabel}>CURATION LABEL *</label>
+          <label htmlFor="label" className={styles.fieldLabel}>
+            CURATION LABEL *
+            <span className={styles.charCount}>{label.length}/25</span>
+          </label>
           <input
             id="label"
             type="text"
             placeholder="e.g. Modernist Highlights 2024"
             value={label}
             onChange={(e) => {
-              setLabel(e.target.value);
-              if (error) setError('');
+              const newValue = e.target.value;
+              if (newValue.length <= 25) {
+                setLabel(newValue);
+                if (error) setError('');
+              }
             }}
             className={`${styles.input} ${error ? styles.inputError : ''}`}
-            maxLength={50}
           />
           {error && <span className={styles.errorText}>{error}</span>}
         </div>
 
         {/* Note */}
         <div className={styles.section}>
-          <label htmlFor="note" className={styles.fieldLabel}>INTERNAL CRITIQUE</label>
+          <label htmlFor="note" className={styles.fieldLabel}>
+            INTERNAL CRITIQUE
+            <span style={{ float: 'right', fontWeight: 'normal' }}>
+              {note.length}/150
+            </span>
+          </label>
           <textarea
             id="note"
             placeholder="Notes on lighting..."
             value={note}
-            onChange={(e) => setNote(e.target.value)}
+            onChange={(e) => {
+              const newValue = e.target.value;
+              if (newValue.length <= 150) {
+                setNote(newValue);
+              }
+            }}
             className={styles.textarea}
-            maxLength={150}
           />
         </div>
 
