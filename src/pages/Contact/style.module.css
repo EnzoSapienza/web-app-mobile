@@ -7,6 +7,17 @@
     margin-bottom: 2rem;
 }
 
+.contactContainer {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.contactContainer>article {
+    flex-basis: 20rem;
+}
+
 .flexContainer {
     width: 100%;
     display: flex;
@@ -14,8 +25,7 @@
     justify-content: center;
 }
 
-.flexContainer div {
-    margin: 0 2rem;
+.flexContainer>div {
     flex-basis: 20ch;
 }
 

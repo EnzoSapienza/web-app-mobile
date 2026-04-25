@@ -17,7 +17,7 @@ export default function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={position}>
-        <Popup>Catedral de la Plata</Popup>
+        <Popup>We are here!</Popup>
       </Marker>
     </MapContainer>
   );

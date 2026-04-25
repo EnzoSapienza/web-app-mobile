@@ -17,38 +17,35 @@ export default function Contact() {
           </p>
         </div>
       </article>
-      <article className={styles.contactArticle}>
-        <h2 className="page-subtitle">Creators</h2>
-        <div className={styles.flexContainer}>
-          <div>Daisy Lizbeth Torrico</div>
-          <div>Enzo Lihuel Sapienza</div>
-        </div>
-      </article>
-      <article className={styles.contactArticle}>
-        <h2 className="page-subtitle">Our contact info</h2>
-        <div className={styles.flexContainer}>
-          <div>
-            <a
-              className="inline-anchor"
-              href="https://www.facebook.com/Unajoficial/"
-            >
-              Facebook
-            </a>
+      <article className={styles.contactContainer}>
+        <article className={styles.contactArticle}>
+          <h2 className="page-subtitle">Creators</h2>
+          <div className={styles.flexContainer}>
+            <div>Daisy Lizbeth Torrico</div>
+            <div>Enzo Lihuel Sapienza</div>
           </div>
-          <div>
-            <a
-              className="inline-anchor"
-              href="https://www.instagram.com/unaj_oficial/"
-            >
-              Instagram
-            </a>
+        </article>
+        <article className={styles.contactArticle}>
+          <h2 className="page-subtitle">Our social media</h2>
+          <div className={styles.flexContainer}>
+            <div>
+              <a
+                className="inline-anchor"
+                href="https://www.facebook.com/Unajoficial/"
+              >
+                Facebook
+              </a>
+            </div>
+            <div>
+              <a
+                className="inline-anchor"
+                href="https://www.instagram.com/unaj_oficial/"
+              >
+                Instagram
+              </a>
+            </div>
           </div>
-          <div>
-            <a className="inline-anchor" href="https://x.com/unaj_oficial">
-              Twitter
-            </a>
-          </div>
-        </div>
+        </article>
       </article>
       <article className={styles.mapSection}>
         <h2 className="page-subtitle">Our office</h2>
