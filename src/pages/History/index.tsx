@@ -46,7 +46,7 @@ export default function History() {
 
   return (
     <section className="page-container">
-      <h1 className="page-title">Historial</h1>
+      <h1 className="page-title">History</h1>
 
       {history.length === 0 && !loading ? (
         <p className={styles.status}>The History is empty.</p>
