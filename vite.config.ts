@@ -2,41 +2,45 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
-// https://vite.dev/config/
 export default defineConfig({
   base: '/web-app-mobile/',
   plugins: [
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icon-192x192.png', 'icon-512x512.png'],
-
+      injectRegister: 'auto',
+      includeAssets: [
+        'favicon.svg',
+        'icons/icon-192x192.png',
+        'icons/icon-512x512.png',
+      ],
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,ico}'],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
+        skipWaiting: true,
         navigateFallback: '/web-app-mobile/index.html',
-
-        // Caché de navegación (consumo a la API pública)
+        navigateFallbackAllowlist: [/^\/web-app-mobile/],
         runtimeCaching: [
           {
+            // ✅ Hostname correcto, path ampliado
             urlPattern: ({ url }) =>
               url.hostname === 'api.artic.edu' &&
-              /^\/api\/v1\/artworks\/\d+$/.test(url.pathname),
-            handler: 'CacheFirst',
+              url.pathname.startsWith('/api/v1/'),
+            handler: 'StaleWhileRevalidate', // ← mejor que CacheFirst para APIs
             options: {
               cacheName: 'artworks-api-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24, // 1 día
+                maxAgeSeconds: 60 * 60 * 24,
               },
               cacheableResponse: {
                 statuses: [0, 200],
               },
             },
           },
-          // Imagenes
           {
+            // ✅ Hostname correcto
             urlPattern: ({ url }) =>
               url.hostname === 'www.artic.edu' &&
               url.pathname.startsWith('/iiif/2'),
@@ -45,7 +49,7 @@ export default defineConfig({
               cacheName: 'artworks-images-cache',
               expiration: {
                 maxEntries: 300,
-                maxAgeSeconds: 60 * 60 * 24 * 30, // 1 mes
+                maxAgeSeconds: 60 * 60 * 24 * 30,
               },
               cacheableResponse: {
                 statuses: [0, 200],
@@ -54,7 +58,6 @@ export default defineConfig({
           },
         ],
       },
-
       manifest: false,
     }),
   ],
