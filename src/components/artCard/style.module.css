@@ -14,6 +14,7 @@
 
 /* Limita el contenedor de la imagen */
 .figure {
+    position: relative;
     width: 100%;
     height: 250px;
     margin: 0;
@@ -29,6 +30,7 @@
 }
 
 .info {
+    position: relative;
     padding: 1rem;
 }
 

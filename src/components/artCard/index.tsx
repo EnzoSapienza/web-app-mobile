@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { useState } from 'react';
 import placeholder from '../../assets/placeholder.png';
+import { CurationBookmark, CurationMetadata, CurationActions } from './curationOverlay';
 
 interface Props {
   art?: {
@@ -10,9 +11,10 @@ interface Props {
     imageUrl: string;
     artist_display: string;
   };
+  onRemove?: (id: number) => void;
 }
 
-export default function ArtCard({ art }: Props) {
+export default function ArtCard({ art, onRemove }: Props) {
   // Art data
   const displayTitle = art?.title || 'Untitled Masterpiece';
   const displayArtist = art?.artist_display || 'Unknown Artist';
@@ -72,10 +74,13 @@ export default function ArtCard({ art }: Props) {
             className={styles.image}
             onError={handleImageError}
           />
+          <CurationBookmark artId={art.id} />
         </figure>
         <div className={styles.info}>
           <h3 className={styles.artTitle}>{displayTitle}</h3>
           <p className={styles.artistName}>{displayArtist}</p>
+          <CurationMetadata artId={art.id} />
+          <CurationActions artId={art.id} onRemove={onRemove} />
         </div>
       </article>
     </Link>
