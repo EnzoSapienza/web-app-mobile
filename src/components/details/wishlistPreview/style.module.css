@@ -1,0 +1,119 @@
+.container {
+    margin: 2rem 0;
+    background: var(--surface-lowest);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    min-width: 0;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .container {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    color: var(--secondary);
+    font-size: 0.8rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0.5rem;
+}
+
+.ratingRow, .noteRow {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.noteTitle {
+    color: var(--on-surface-variant);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stars {
+    font-size: 1.4rem;
+    color: var(--secondary);
+    letter-spacing: 2px;
+}
+
+.labelBadge {
+    background: var(--surface-low);
+    color: var(--primary);
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.noteText {
+    color: var(--primary);
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+@media (orientation: landscape) and (max-height: 481px) {
+    .container {
+        padding: 1rem;
+        gap: 0.8rem;
+    }
+    .ratingRow, .noteRow {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+    .noteRow {
+        align-items: baseline;
+    }
+    .noteTitle {
+        flex: 0 0 120px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 1.8rem;
+        gap: 1.5rem;
+    }
+    .ratingRow, .noteRow {
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    .noteRow {
+        align-items: baseline;
+    }
+    .noteTitle {
+        flex: 0 0 150px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 2.2rem;
+        max-width: 100%;
+    }
+    .noteTitle {
+        flex: 0 0 180px;
+        font-size: 0.75rem;
+    }
+    .noteText {
+        font-size: 1.05rem;
+    }
+}
