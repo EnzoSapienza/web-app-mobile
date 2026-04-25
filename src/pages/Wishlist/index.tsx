@@ -8,7 +8,7 @@ import type WishlistItem from '../../interfaces/LocalItems/WishlistItem';
 
 export default function Wishlist() {
   const limit = 10; // 10 cartas por carga
-  const { wishlist } = useWishlist();
+  const { wishlist, removeItem } = useWishlist();
 
   // Routing
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,6 +42,10 @@ export default function Wishlist() {
     fetchArtworks();
   }, [offset, wishlist]);
 
+  // Sincronizar cuando se elimina un item
+  useEffect(() => {
+    setArtworks((prev) => prev.filter((art) => wishlist.some((w) => w.id === art.id)));
+  }, [wishlist]);
   return (
     <section className="page-container">
       <h1 className="page-title">Wishlist</h1>
@@ -62,7 +66,11 @@ export default function Wishlist() {
 
           <ArtGrid>
             {artworks.map((art) => (
-              <ArtCard key={art?.id} art={art} />
+              <ArtCard
+                key={art?.id}
+                art={art}
+                onRemove={removeItem}
+              />
             ))}
           </ArtGrid>
 
