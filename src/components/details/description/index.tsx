@@ -16,7 +16,9 @@ export default function ArtworkDescription({ text }: Props) {
     if (!el) return;
 
     const checkOverflow = () => {
-      setShowButton(el.scrollHeight > el.clientHeight);
+      if (!isOpen && el.scrollHeight > el.clientHeight) {
+        setShowButton(true);
+      }
     };
     checkOverflow();
 
@@ -24,7 +26,7 @@ export default function ArtworkDescription({ text }: Props) {
     observer.observe(el);
 
     return () => observer.disconnect();
-  }, [text]);
+  }, [text, isOpen]);
 
   const cleanHtml = useMemo(
     () =>
@@ -48,7 +50,7 @@ export default function ArtworkDescription({ text }: Props) {
       />
       {showButton && (
         <button className="btn-silver" onClick={() => setOpen((prev) => !prev)}>
-          read more
+          {isOpen ? 'read less' : 'read more'}
         </button>
       )}
     </section>
