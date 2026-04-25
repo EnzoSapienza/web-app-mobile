@@ -1,0 +1,29 @@
+{
+  "name": "The Museum Luminal",
+  "short_name": "TheLuminal",
+  "description": "Search and review artworks across the world!",
+  "theme_color": "#735b1e",
+  "background_color": "#f3f4f5",
+  "display": "standalone",
+  "scope": "/web-app-mobile/",
+  "start_url": "/web-app-mobile/?source=pwa",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
