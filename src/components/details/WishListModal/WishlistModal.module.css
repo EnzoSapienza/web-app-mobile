@@ -134,6 +134,23 @@
     box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
 }
 
+.fieldLabel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.charCount {
+    font-weight: 400;
+    letter-spacing: normal;
+    color: var(--on-surface-variant);
+}
+
 @keyframes slideUp {
     from { transform: translateY(100%); }
     to { transform: translateY(0); }
