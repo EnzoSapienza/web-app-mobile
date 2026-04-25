@@ -18,6 +18,7 @@
   --error-bg: #fff5f5;
   --btn-gold-end: #e3c37b;
   --btn-silver-end: #aca7b9;
+  --anchor-color: #7a5c1f;
   --font-serif: 'Noto Serif', serif;
   --font-sans: 'Inter', sans-serif;
   --header-h: 60px;
@@ -38,12 +39,14 @@
   --card-light: #2a2a2a;
   --card-dark: #3a3a3a;
   --border-color: #444444;
+  --anchor-color: hsl(40, 60%, 50%);
 
   --error-main: #ef5350;
   --error-bg: #3c1616;
   --btn-gold-end: #a88d4d;
   --btn-silver-end: #5a5766;
 }
+
 [data-theme="dark"] img[alt="logo"] {
   filter: invert(1);
 }
@@ -53,17 +56,28 @@
   margin: 0;
   padding: 0;
 }
-input, button, textarea, select {
+
+input,
+button,
+textarea,
+select {
   font-family: inherit;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 700;
 }
+
 p {
   font-family: var(--font-serif);
 }
+
 body {
   background-color: var(--surface);
   color: var(--primary);
@@ -72,6 +86,9 @@ body {
   font-size: var(--body-font-size);
 }
 
+a {
+  color: var(--anchor-color);
+}
 
 /* Responsive: ajusta variables CSS según el ancho de pantalla */
 @media (min-width: 481px) {

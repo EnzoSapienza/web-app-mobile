@@ -4,7 +4,9 @@
     padding: var(--header-h) 1rem var(--navbar-h) 1rem;
     margin: 0 auto;
     box-sizing: border-box;
+    padding-bottom: 3rem;
 }
+
 /*Para landspace*/
 @media (orientation: landscape) {
     .mainPage {
@@ -12,6 +14,7 @@
         padding-bottom: 2rem;
     }
 }
+
 /* Para desktop */
 @media (min-width: 1024px) {
     .mainPage {
