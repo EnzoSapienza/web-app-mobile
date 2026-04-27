@@ -13,7 +13,7 @@ export default function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
 
-  // Cosas de la PWA
+  // Validar conexión de PWA
   const isOnline = useNetworkStatus();
   const isPWA = useIsPWA();
 
@@ -28,6 +28,7 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Campos
   const types = [
     'painting',
     'sculpture',
@@ -78,6 +79,7 @@ export default function Search() {
     setSearchParams(newParams, { replace: true, state: location.state });
   };
 
+  // Buscar siguiente página
   useEffect(() => {
     let cancelled: boolean = false;
     updateParams();

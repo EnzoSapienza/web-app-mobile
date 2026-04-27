@@ -44,8 +44,11 @@ export default function Wishlist() {
 
   // Sincronizar cuando se elimina un item
   useEffect(() => {
-    setArtworks((prev) => prev.filter((art) => wishlist.some((w) => w.id === art.id)));
+    setArtworks((prev) =>
+      prev.filter((art) => wishlist.some((w) => w.id === art.id))
+    );
   }, [wishlist]);
+
   return (
     <section className="page-container">
       <h1 className="page-title">Wishlist</h1>
@@ -66,11 +69,7 @@ export default function Wishlist() {
 
           <ArtGrid>
             {artworks.map((art) => (
-              <ArtCard
-                key={art?.id}
-                art={art}
-                onRemove={removeItem}
-              />
+              <ArtCard key={art?.id} art={art} onRemove={removeItem} />
             ))}
           </ArtGrid>
 
