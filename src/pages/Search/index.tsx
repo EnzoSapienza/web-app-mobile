@@ -97,7 +97,7 @@ export default function Search() {
       if (!cancelled) {
         setArtworks(results);
         setLoading(false);
-        if (submitted) window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 

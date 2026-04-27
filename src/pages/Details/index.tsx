@@ -17,6 +17,9 @@ import WishlistPreview from '../../components/details/wishlistPreview';
 export default function Details() {
   const { id } = useParams();
 
+  // Scroll to top
+  useEffect(() => window.scrollTo(0, 0));
+
   // Fetch
   const [artwork, setArtwork] = useState<Artwork>();
   const [isAvailable, setAvailable] = useState(true);
