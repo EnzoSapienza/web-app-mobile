@@ -1,0 +1,36 @@
+/* components/layout/NetworkBanner/style.module.css */
+.banner {
+    position: fixed;
+    top: var(--header-h);
+
+    left: 0;
+    width: 100dvw;
+    z-index: 999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--surface-lowest);
+    transition: transform 0.3s ease;
+}
+
+.online {
+    background-color: #4caf50;
+    transform: translateY(-100%);
+}
+
+.offline {
+    background-color: tomato;
+    transform: translateY(0);
+}
+
+.scrollDown.online {
+    transform: translateY(calc(-100% - var(--header-h)));
+}
+
+.scrollDown.offline {
+    transform: translateY(calc(-1 * var(--header-h)));
+}
