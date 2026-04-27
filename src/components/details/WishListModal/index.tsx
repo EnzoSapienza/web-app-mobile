@@ -27,7 +27,7 @@ export default function WishlistModal({
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     if (!label.trim()) {
       setError('Please provide a curation label.');
@@ -79,7 +79,11 @@ export default function WishlistModal({
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
-                className={star <= (hoverRating || priority) ? styles.starActive : styles.star}
+                className={
+                  star <= (hoverRating || priority)
+                    ? styles.starActive
+                    : styles.star
+                }
                 onClick={() => setPriority(star)}
                 onMouseEnter={() => setHoverRating(star)}
                 onMouseLeave={() => setHoverRating(0)}
