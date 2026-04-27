@@ -14,7 +14,13 @@ import WishlistModal, {
 } from '../../components/details/WishListModal';
 import WishlistPreview from '../../components/details/wishlistPreview';
 
+
 export default function Details() {
+  const artStatus = {
+    LOADING: 0,
+    AVAILABLE: 1,
+    UNAVAILABLE: 2,
+  };
   const { id } = useParams();
 
   // Scroll to top
@@ -22,7 +28,7 @@ export default function Details() {
 
   // Fetch
   const [artwork, setArtwork] = useState<Artwork>();
-  const [isAvailable, setAvailable] = useState(true);
+  const [isAvailable, setAvailable] = useState(artStatus.LOADING);
 
   useEffect(() => {
     const fetchArtwork = async () => {
@@ -30,8 +36,9 @@ export default function Details() {
 
       if (data) {
         setArtwork(data);
+        setAvailable(artStatus.AVAILABLE);
       } else {
-        setAvailable(false);
+        setAvailable(artStatus.UNAVAILABLE);
       }
     };
     fetchArtwork();
@@ -96,14 +103,14 @@ export default function Details() {
 
       {/*En caso de que falle al cargar*/}
       <div
-        className={`${styles.offlineMessage} ${!isAvailable ? '' : styles.hidden}`}
+        className={`${styles.offlineMessage} ${isAvailable === artStatus.UNAVAILABLE ? '' : styles.hidden}`}
       >
         <h1 className="page-title">Resource not available</h1>
       </div>
 
       {/*Contenido principal*/}
       <div
-        className={`${styles.contentWrapper} ${isAvailable ? '' : styles.hidden}`}
+        className={`${styles.contentWrapper} ${isAvailable === artStatus.AVAILABLE ? '' : styles.hidden}`}
       >
         <section className={styles.imageSection}>
           <ArtworkImage artwork={artwork} />
