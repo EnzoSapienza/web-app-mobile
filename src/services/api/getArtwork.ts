@@ -5,10 +5,13 @@ export default async function GetArtwork(
   artwork_id: number
 ): Promise<Artwork | undefined> {
   const url = `${BASE_URL}/artworks/${artwork_id}`;
-  const response = await fetch(url);
-  if (!response.ok) {
-    console.error(response.statusText);
-    return;
+
+  let response: Response;
+  try {
+    response = await fetch(url);
+  } catch {
+    console.error('Sin conexión o error de red. Id:', artwork_id);
+    return undefined;
   }
 
   try {

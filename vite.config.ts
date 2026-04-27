@@ -23,27 +23,23 @@ export default defineConfig({
         navigateFallbackAllowlist: [/^\/web-app-mobile/],
         runtimeCaching: [
           {
-            // ✅ Hostname correcto, path ampliado
             urlPattern: ({ url }) =>
               url.hostname === 'api.artic.edu' &&
-              url.pathname.startsWith('/api/v1/'),
-            handler: 'StaleWhileRevalidate', // ← mejor que CacheFirst para APIs
+              /^\/api\/v1\/artworks\/\d+$/.test(url.pathname),
+            handler: 'CacheFirst',
             options: {
               cacheName: 'artworks-api-cache',
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
           {
-            // ✅ Hostname correcto
             urlPattern: ({ url }) =>
               url.hostname === 'www.artic.edu' &&
-              url.pathname.startsWith('/iiif/2'),
+              url.pathname.startsWith('/iiif/2/'),
             handler: 'CacheFirst',
             options: {
               cacheName: 'artworks-images-cache',
@@ -51,9 +47,7 @@ export default defineConfig({
                 maxEntries: 300,
                 maxAgeSeconds: 60 * 60 * 24 * 30,
               },
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
+              cacheableResponse: { statuses: [0, 200] },
             },
           },
         ],
