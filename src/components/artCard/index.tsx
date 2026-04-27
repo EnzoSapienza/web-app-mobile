@@ -2,7 +2,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './style.module.css';
 import { useState } from 'react';
 import placeholder from '../../assets/placeholder.png';
-import { CurationBookmark, CurationMetadata, CurationActions } from './curationOverlay';
+import {
+  CurationBookmark,
+  CurationMetadata,
+  CurationActions,
+} from './curationOverlay';
 
 interface Props {
   art?: {
@@ -34,11 +38,11 @@ export default function ArtCard({ art, onRemove }: Props) {
     e: React.SyntheticEvent<HTMLImageElement, Event>
   ) => {
     if (errorCount === 0) {
-      console.log('primer error');
+      console.log('primer error:', art);
       e.currentTarget.src = art.imageUrl.replace(/\/full\/\d+,/, '/full/full');
       setErrorCount(1);
     } else if (errorCount === 1) {
-      console.log('segundo error');
+      console.log('segundo error', art);
       e.currentTarget.src = placeholder;
       setErrorCount(2);
     }

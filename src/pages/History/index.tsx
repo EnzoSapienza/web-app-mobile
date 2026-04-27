@@ -19,7 +19,6 @@ export default function History() {
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(Number(searchParams.get('offset')) || 0);
   const [more, setMore] = useState(true);
-  console.log(searchParams);
 
   // Buscar los artículos
   useEffect(() => {
