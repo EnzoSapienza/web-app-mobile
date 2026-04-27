@@ -61,9 +61,6 @@ export default function Details() {
   const handleSubmitWishlist = (formData: WishlistFormData) => {
     if (!artwork) return;
 
-    // Validación
-    if (!formData?.label || !formData?.priority) return;
-
     addToList({
       id: artwork.id,
       title: artwork.title,
