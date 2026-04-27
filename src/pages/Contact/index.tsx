@@ -49,7 +49,7 @@ export default function Contact() {
       </article>
       <article className={styles.mapSection}>
         <h2 className="page-subtitle">Our office</h2>
-        <p>Dirección: Calle 14, 1009. Ciudad de La Plata. Provincia de Buenos Aires.</p>
+        <p>Dirección: 14th Street, 1009. City of La Plata. Province of Buenos Aires.</p>
         {/* Mapa delas oficinas */}
         <Map />
       </article>
