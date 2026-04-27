@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './WishlistModal.module.css';
 import type Artwork from '../../../interfaces/Responses/Artwork';
 
@@ -26,6 +26,14 @@ export default function WishlistModal({
   const [label, setLabel] = useState('');
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
+
+  // Para evitar el scroll
+  useEffect(() => {
+    if (isOpen) document.body.classList.add('noScroll');
+    else document.body.classList.remove('noScroll');
+
+    return () => document.body.classList.remove('noScroll');
+  }, [isOpen]);
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();

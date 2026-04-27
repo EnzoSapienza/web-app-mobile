@@ -12,10 +12,10 @@ export default function ArtworkImage({ artwork }: Props) {
 
   // Para evitar el scroll
   useEffect(() => {
-    if (isOpen) document.body.classList.add(styles.noScroll);
-    else document.body.classList.remove(styles.noScroll);
+    if (isOpen) document.body.classList.add('noScroll');
+    else document.body.classList.remove('noScroll');
 
-    return () => document.body.classList.remove(styles.noScroll);
+    return () => document.body.classList.remove('noScroll');
   }, [isOpen]);
 
   if (artwork?.image_id)
