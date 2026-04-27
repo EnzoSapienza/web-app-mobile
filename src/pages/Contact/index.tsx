@@ -21,7 +21,7 @@ export default function Contact() {
         <article className={styles.contactArticle}>
           <h2 className="page-subtitle">Creators</h2>
           <div className={styles.flexContainer}>
-            <div>Daisy Lizbeth Torrico</div>
+            <div>Daisy Torrico Castedo</div>
             <div>Enzo Lihuel Sapienza</div>
           </div>
         </article>
@@ -49,6 +49,7 @@ export default function Contact() {
       </article>
       <article className={styles.mapSection}>
         <h2 className="page-subtitle">Our office</h2>
+        <p>Dirección: Calle 14, 1009. Ciudad de La Plata. Provincia de Buenos Aires.</p>
         {/* Mapa delas oficinas */}
         <Map />
       </article>
