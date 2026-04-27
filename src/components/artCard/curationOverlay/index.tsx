@@ -51,7 +51,7 @@ export function CurationActions({ artId, onRemove }: { artId: number, onRemove?:
   if (!onRemove) return null;
 
   return (
-    <button className={styles.removeBtn} onClick={handleRemoveClick} title="trash">
+    <button className={styles.removeBtn} onClick={handleRemoveClick} title="remove">
       <img src={trashIcon} alt="trash" className={styles.trashIcon} />
     </button>
   );

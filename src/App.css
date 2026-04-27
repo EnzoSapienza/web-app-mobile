@@ -1,9 +1,10 @@
 /* Contenido principal */
 .page-container {
   width: 100%;
-  padding: 1rem 0 3rem 0;
+  padding: var(--header-h) 0 3rem 0;
   min-height: auto;
   background: linear-gradient(to bottom, var(--surface-low) 0%, var(--surface) 300px);
+  margin-top: calc(var(--header-h) * -1);
 }
 
 .page-header {
