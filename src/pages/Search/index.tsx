@@ -5,11 +5,17 @@ import type Artwork from '../../interfaces/Responses/Artwork';
 import styles from './style.module.css';
 import ArtGrid from '../../components/artGrid';
 import { useLocation, useSearchParams } from 'react-router-dom';
+import useNetworkStatus from '../../services/pwa/useNetworkStatus';
+import useIsPWA from '../../services/pwa/useIsPwa';
 
 export default function Search() {
   // Manejo de ruteo
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+
+  // Cosas de la PWA
+  const isOnline = useNetworkStatus();
+  const isPWA = useIsPWA();
 
   // Cargarlos a los SearchParam
   const [query, setQuery] = useState(searchParams.get('query') || '');
@@ -22,9 +28,46 @@ export default function Search() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const types = ['painting', 'sculpture', 'textile', 'furniture', 'ceramics', 'jewelry', 'photography'];
-  const origins = ['France', 'Japan', 'Mexico', 'United States', 'Italy', 'China', 'Egypt', 'Greece', 'India', 'Spain','Netherlands', 'Germany', 'Russia', 'Brazil', 'South Korea', 'Iran'];
-  const stylesList = ['Impressionism', 'Modernism', 'Surrealism', 'Post-Impressionism','Japanese (culture or style)', 'Renaissance', 'Baroque', 'Cubism', 'Abstract Expressionism', 'Realism', 'Neoclassicism'];
+  const types = [
+    'painting',
+    'sculpture',
+    'textile',
+    'furniture',
+    'ceramics',
+    'jewelry',
+    'photography',
+  ];
+  const origins = [
+    'France',
+    'Japan',
+    'Mexico',
+    'United States',
+    'Italy',
+    'China',
+    'Egypt',
+    'Greece',
+    'India',
+    'Spain',
+    'Netherlands',
+    'Germany',
+    'Russia',
+    'Brazil',
+    'South Korea',
+    'Iran',
+  ];
+  const stylesList = [
+    'Impressionism',
+    'Modernism',
+    'Surrealism',
+    'Post-Impressionism',
+    'Japanese (culture or style)',
+    'Renaissance',
+    'Baroque',
+    'Cubism',
+    'Abstract Expressionism',
+    'Realism',
+    'Neoclassicism',
+  ];
   const updateParams = async () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set('query', query);
@@ -41,7 +84,7 @@ export default function Search() {
 
     const fetchArtworks = async () => {
       setLoading(true);
-      const results = await GetArtworksSearch({
+      const results: Artwork[] = await GetArtworksSearch({
         q: query,
         type,
         origin,
@@ -85,6 +128,7 @@ export default function Search() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by keyword..."
             className={styles.searchInput}
+            disabled={isPWA && !isOnline}
           />
         </div>
 
@@ -93,6 +137,7 @@ export default function Search() {
             value={type}
             onChange={(e) => setType(e.target.value)}
             className={styles.select}
+            disabled={isPWA && !isOnline}
           >
             <option value="">Category ▾</option>
             {types.map((t) => (
@@ -105,6 +150,7 @@ export default function Search() {
             value={origin}
             onChange={(e) => setOrigin(e.target.value)}
             className={styles.select}
+            disabled={isPWA && !isOnline}
           >
             <option value="">Origin ▾</option>
             {origins.map((o) => (
@@ -117,6 +163,7 @@ export default function Search() {
             value={style}
             onChange={(e) => setStyle(e.target.value)}
             className={styles.select}
+            disabled={isPWA && !isOnline}
           >
             <option value="">Style ▾</option>
             {stylesList.map((s) => (
@@ -127,7 +174,11 @@ export default function Search() {
           </select>
         </div>
 
-        <button type="submit" className="btn-gold" disabled={loading}>
+        <button
+          type="submit"
+          className="btn-gold"
+          disabled={loading || (isPWA && !isOnline)}
+        >
           {loading ? 'Searching...' : 'Apply Filters'}
         </button>
       </form>
@@ -136,11 +187,11 @@ export default function Search() {
         {loading ? (
           <p className={styles.status}>Exploring archives...</p>
         ) : artworks.length > 0 ? (
-          artworks.map((art) => (
-            <ArtCard key={art.id} art={art} />
-          ))
-        ) : (
+          artworks.map((art) => <ArtCard key={art.id} art={art} />)
+        ) : !isPWA || isOnline ? (
           <p className={styles.status}>No results found.</p>
+        ) : (
+          <p className={styles.status}>This feature needs to be online.</p>
         )}
       </ArtGrid>
 

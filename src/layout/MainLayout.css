@@ -7,6 +7,30 @@
     padding-bottom: 3rem;
 }
 
+.networkMessage {
+    color: var(--surface-lowest);
+
+    width: 100dvw;
+    position: fixed;
+    left: 0;
+    top: var(--header-h);
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    transition: transform 0.5s ease-in-out;
+}
+
+.networkMessage.online {
+    background-color: lime;
+    transform: translateY(-100%);
+}
+
+.networkMessage.offline {
+    background-color: tomato;
+    transform: translateY(0);
+}
+
 /*Para landspace*/
 @media (orientation: landscape) {
     .mainPage {

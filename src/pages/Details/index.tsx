@@ -9,25 +9,27 @@ import ArtworkData from '../../components/details/data/indext';
 import AccordionSection from '../../components/details/accordion';
 import useHistory from '../../services/local/history';
 import useWishlist from '../../services/local/wishlist';
-import WishlistModal, { type WishlistFormData } from '../../components/details/WishListModal';
+import WishlistModal, {
+  type WishlistFormData,
+} from '../../components/details/WishListModal';
 import WishlistPreview from '../../components/details/wishlistPreview';
-
 
 export default function Details() {
   const { id } = useParams();
 
-  // TODO: Hacer mensaje de error
-  // Situaciones: ID no valido, Imagen no encontrada
-
   // Fetch
   const [artwork, setArtwork] = useState<Artwork>();
-  const [isReady, setIsReady] = useState(false);
+  const [isAvailable, setAvailable] = useState(true);
 
   useEffect(() => {
     const fetchArtwork = async () => {
       const data = await GetArtwork(Number(id));
-      setArtwork(data);
-      setIsReady(true);
+
+      if (data) {
+        setArtwork(data);
+      } else {
+        setAvailable(false);
+      }
     };
     fetchArtwork();
   }, [id]);
@@ -41,7 +43,9 @@ export default function Details() {
   // Modal y Wishlist
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { wishlist, addToList, removeItem, isInWishlist } = useWishlist();
-  const wishlistItem = artwork ? wishlist.find((item) => item.id === artwork.id) : null;
+  const wishlistItem = artwork
+    ? wishlist.find((item) => item.id === artwork.id)
+    : null;
 
   // Volver atrás
   const navigate = useNavigate();
@@ -71,24 +75,41 @@ export default function Details() {
   };
   const isAlreadyInWishlist = artwork ? isInWishlist(artwork.id) : false;
 
-
   return (
-    <main className={styles.detailsPage}>
-      <h1 className={`.page-title-detail ${isReady ? styles.visible : styles.hidden}`}>
-          {artwork?.title}
+    <article className={styles.detailsPage}>
+      <h1
+        className={`page-title-detail ${isAvailable ? styles.visible : styles.hidden}`}
+      >
+        {artwork?.title}
       </h1>
-      <button className={`btn-silver ${isReady ? styles.visible : styles.hidden}`}
-      onClick={goBack}>
+      <button
+        className={`btn-silver ${isAvailable ? styles.visible : styles.hidden}`}
+        onClick={goBack}
+      >
         <span className={styles.textIcon}>←</span>
         Back
       </button>
 
-      <div className={styles.contentWrapper}>
+      {/*En caso de Offline*/}
+      <div
+        className={`${styles.offlineMessage} ${!isAvailable ? '' : styles.hidden}`}
+      >
+        <h1 className="page-title">Resource not available</h1>
+      </div>
+
+      {/*Contenido principal*/}
+      <div
+        className={`${styles.contentWrapper} ${isAvailable ? '' : styles.hidden}`}
+      >
         <section className={styles.imageSection}>
           <ArtworkImage artwork={artwork} />
           {!isAlreadyInWishlist ? (
             <button
-              className={['btn-gold', styles.wishlistBtn, isReady ? styles.visible : styles.hidden].join(' ')}
+              className={[
+                'btn-gold',
+                styles.wishlistBtn,
+                isAvailable ? styles.visible : styles.hidden,
+              ].join(' ')}
               onClick={handleOpenWishlist}
               title="Add to Wishlist"
             >
@@ -96,7 +117,11 @@ export default function Details() {
             </button>
           ) : (
             <button
-              className={['btn-silver', styles.wishlistBtn, isReady ? styles.visible : styles.hidden].join(' ')}
+              className={[
+                'btn-silver',
+                styles.wishlistBtn,
+                isAvailable ? styles.visible : styles.hidden,
+              ].join(' ')}
               onClick={() => removeItem(artwork!.id)}
               title="Remove from Wishlist"
             >
@@ -140,6 +165,6 @@ export default function Details() {
         onSubmit={handleSubmitWishlist}
         artwork={artwork}
       />
-    </main>
+    </article>
   );
 }
