@@ -40,6 +40,12 @@ export default function Details() {
     if (artwork) addItem(artwork);
   }, [addItem, artwork]);
 
+  // Volver atrás
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
+
   // Modal y Wishlist
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { wishlist, addToList, removeItem, isInWishlist } = useWishlist();
@@ -47,11 +53,6 @@ export default function Details() {
     ? wishlist.find((item) => item.id === artwork.id)
     : null;
 
-  // Volver atrás
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  };
   const handleOpenWishlist = () => {
     setIsModalOpen(true);
   };
@@ -90,7 +91,7 @@ export default function Details() {
         Back
       </button>
 
-      {/*En caso de Offline*/}
+      {/*En caso de que falle al cargar*/}
       <div
         className={`${styles.offlineMessage} ${!isAvailable ? '' : styles.hidden}`}
       >
@@ -103,7 +104,10 @@ export default function Details() {
       >
         <section className={styles.imageSection}>
           <ArtworkImage artwork={artwork} />
+
+          {/* Botón de Wishlist */}
           {!isAlreadyInWishlist ? (
+            // Añadir
             <button
               className={[
                 'btn-gold',
@@ -116,6 +120,7 @@ export default function Details() {
               Add to Wishlist
             </button>
           ) : (
+            // Eliminar
             <button
               className={[
                 'btn-silver',
@@ -131,11 +136,15 @@ export default function Details() {
         </section>
 
         <section className={styles.infoSection}>
+          {/* Descripción principal */}
           <ArtworkDescription
             text={artwork?.description || artwork?.short_description}
           />
+
+          {/* Campos genéricos */}
           <ArtworkData artwork={artwork} />
 
+          {/* Campos con texto largo */}
           <AccordionSection
             title="Publication History"
             content={artwork?.publication_history}
@@ -149,6 +158,7 @@ export default function Details() {
             content={artwork?.provenance_text}
           />
 
+          {/* Campos de wishlist */}
           {isAlreadyInWishlist && (
             <WishlistPreview
               priority={wishlistItem?.priority}
@@ -159,6 +169,7 @@ export default function Details() {
         </section>
       </div>
 
+      {/* Formulario para añadir a la wishlist */}
       <WishlistModal
         isOpen={isModalOpen}
         onClose={handleCloseWishlist}

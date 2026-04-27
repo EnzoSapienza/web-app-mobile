@@ -49,6 +49,7 @@ export default function Contact() {
       </article>
       <article className={styles.mapSection}>
         <h2 className="page-subtitle">Our office</h2>
+        {/* Mapa delas oficinas */}
         <Map />
       </article>
     </section>

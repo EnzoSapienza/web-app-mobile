@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './WishlistModal.module.css';
 import type Artwork from '../../../interfaces/Responses/Artwork';
 
@@ -27,7 +27,15 @@ export default function WishlistModal({
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Para evitar el scroll
+  useEffect(() => {
+    if (isOpen) document.body.classList.add('noScroll');
+    else document.body.classList.remove('noScroll');
+
+    return () => document.body.classList.remove('noScroll');
+  }, [isOpen]);
+
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     if (!label.trim()) {
       setError('Please provide a curation label.');
@@ -79,7 +87,11 @@ export default function WishlistModal({
             {[1, 2, 3, 4, 5].map((star) => (
               <span
                 key={star}
-                className={star <= (hoverRating || priority) ? styles.starActive : styles.star}
+                className={
+                  star <= (hoverRating || priority)
+                    ? styles.starActive
+                    : styles.star
+                }
                 onClick={() => setPriority(star)}
                 onMouseEnter={() => setHoverRating(star)}
                 onMouseLeave={() => setHoverRating(0)}

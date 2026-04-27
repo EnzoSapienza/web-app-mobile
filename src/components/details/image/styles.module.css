@@ -54,7 +54,3 @@
     max-height: 100%;
     object-fit: contain;
 }
-
-.noScroll {
-    overflow: hidden;
-}
